@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wtd.Core.Views.EditJobPage"
+             xmlns:converters="clr-namespace:Wtd.Core.Converters">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:DateTimeOffsetToDateTimeConverter x:Key="DateTimeOffsetToDateTimeConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
+        <ToolbarItem Text="Delete" Command="{Binding DeleteCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Text="{Binding Job.Description}" Placeholder="Job Description"/>
+            <DatePicker Date="{Binding Job.CalendarDate}">
+                <DatePicker.Format>ddMMMyyyy</DatePicker.Format>
+            </DatePicker>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
+
+<!--, Converter={StaticResource DateTimeOffsetToDateTimeConverter}-->

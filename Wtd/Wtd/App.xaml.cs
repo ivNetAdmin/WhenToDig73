@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿
+using Wtd.Core.ViewModels;
+using Wtd.Core.Views;
 using Xamarin.Forms;
 
 namespace Wtd
@@ -13,7 +11,12 @@ namespace Wtd
 		{
 			InitializeComponent();
 
-			MainPage = new Wtd.MainPage();
+            var mainPage = new MainPage
+            {
+                BindingContext = new MainViewModel()
+            };
+
+            MainPage = new NavigationPage(mainPage);
 		}
 
 		protected override void OnStart ()
