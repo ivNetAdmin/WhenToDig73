@@ -23,13 +23,12 @@ namespace Wtd.Core.ViewModels
             JobList = _realm.All<Job>();
 
             AddOrUpdateJobCommand = new Command<Job>(AddOrUpdateJob);
-        }
-        //new DateTimeOffset(Job.CalendarDate,TimeZoneInfo.Local.GetUtcOffset(Job.CalendarDate));
+        }       
         internal void AddOrUpdateJob(Job job)
         {
             if(job==null)
             {
-                job = new Job { Description = string.Empty, Date = DateTimeOffset.Now };
+                job = new Job { Description = string.Empty, Date = DateTimeOffset.Now, Type = 1 };
             }
 
             _realm.Write(() => _realm.Add(job, update: true));

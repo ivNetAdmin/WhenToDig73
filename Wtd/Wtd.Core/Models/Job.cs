@@ -11,19 +11,10 @@ namespace Wtd.Core.Models
 
         public DateTimeOffset Date { get; set; }
         public string Description { get; set; }
+        public int Type { get; set; }
+        public string TypeImage { get; set; }
 
         [Ignored]
         public  DateTime CalendarDate { get; set; }
-
-        // public int Type { get; set; }
-
-        //[Ignored]
-        //public string TypeImage
-        //{
-        //    get
-        //    {
-        //        return string.Format("t{0}.png", Type);
-        //    }
-        //}
     }
 }

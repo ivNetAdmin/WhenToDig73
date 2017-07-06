@@ -19,7 +19,7 @@
                         <ViewCell>
                             <StackLayout Orientation="Horizontal">
                                 <Label Text="{Binding Date.LocalDateTime,StringFormat='{0:dd/MM}'}" VerticalOptions="Center"/>
-                                    <!--<Image HeightRequest="20" Source="{Binding Path=TypeImage}" VerticalOptions="Center"/>-->
+                                <Image HeightRequest="20" Source="{Binding Path=TypeImage}" VerticalOptions="Center"/>
                                 <Label Text="{Binding Description}" VerticalOptions="Center"/>
                             </StackLayout>
                         </ViewCell>

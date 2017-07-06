@@ -21,9 +21,16 @@ namespace Wtd.Core.Services
             }
             else
             {
-                var page = GetPage(model);
-                page.BindingContext = model;
-                return Navigation.PushAsync(page, animated: true);
+                try
+                {
+                    var page = GetPage(model);
+                    page.BindingContext = model;
+                    return Navigation.PushAsync(page, animated: true);
+                }catch(Exception ex)
+                {
+                    var cakes = ex.Message;
+                    throw ex;
+                }
             }
         }
 
