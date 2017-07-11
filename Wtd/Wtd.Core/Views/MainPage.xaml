@@ -8,24 +8,143 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <ListView 
+        <!--
+        Command="{Binding ChangeCalendarCommand}"
+        Text="{Binding DisplayCalendarDate}"
+        -->
+        <StackLayout Padding="10" Spacing="5" VerticalOptions = "Start">
+            <StackLayout.Children>
+                <StackLayout BackgroundColor="DarkSlateGray" Padding="10">
+                    <Grid VerticalOptions="Start">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Button Text="&lt;&lt;" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Command="{Binding ChangeCalendarCommand}" CommandParameter="LastYear"/>
+                        <Button Text="&lt;" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Command="{Binding ChangeCalendarCommand}" CommandParameter="LastMonth"/>
+                        <Label TextColor="White" Text="{Binding DisplayCalendarDate}" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="3" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                        <Button Text="&gt;" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center"  Command="{Binding ChangeCalendarCommand}" CommandParameter="NextMonth"/>
+                        <Button Text="&gt;&gt;" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Command="{Binding ChangeCalendarCommand}" CommandParameter="NextYear"/>
+                    </Grid>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label Text="Mo" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="Tu" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="We" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="Th" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="Fr" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="Sa" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" TextColor="Aqua"/>
+                        <Label Text="Su" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" TextColor="Aqua"/>
+                    </Grid>
+                    <Grid x:Name="CalendarGrid">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[0]}" TextColor="{Binding DateRangeTextColour[0]}" IsVisible="{Binding DateRangeVisible[0]}"/>
+                        <Image Grid.Row="0" Grid.Column="0" Source="{Binding DateRangeJobType[0]}" />
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[1]}" TextColor="{Binding DateRangeTextColour[1]}" IsVisible="{Binding DateRangeVisible[1]}"/>
+                        <Image Grid.Row="0" Grid.Column="1" Source="{Binding DateRangeJobType[1]}" />
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[2]}" TextColor="{Binding DateRangeTextColour[2]}" IsVisible="{Binding DateRangeVisible[2]}"/>
+                        <Image Grid.Row="0" Grid.Column="2" Source="{Binding DateRangeJobType[2]}" />
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[3]}" TextColor="{Binding DateRangeTextColour[3]}" IsVisible="{Binding DateRangeVisible[3]}"/>
+                        <Image Grid.Row="0" Grid.Column="3" Source="{Binding DateRangeJobType[3]}" />
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[4]}" TextColor="{Binding DateRangeTextColour[4]}" IsVisible="{Binding DateRangeVisible[4]}"/>
+                        <Image Grid.Row="0" Grid.Column="4" Source="{Binding DateRangeJobType[4]}" />
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[5]}" TextColor="{Binding DateRangeTextColour[5]}" IsVisible="{Binding DateRangeVisible[5]}"/>
+                        <Image Grid.Row="0" Grid.Column="5" Source="{Binding DateRangeJobType[5]}" />
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[6]}" TextColor="{Binding DateRangeTextColour[6]}" IsVisible="{Binding DateRangeVisible[6]}"/>
+                        <Image Grid.Row="0" Grid.Column="6" Source="{Binding DateRangeJobType[6]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[7]}" TextColor="{Binding DateRangeTextColour[7]}" IsVisible="{Binding DateRangeVisible[7]}"/>
+                        <Image Grid.Row="1" Grid.Column="0" Source="{Binding DateRangeJobType[7]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[8]}" TextColor="{Binding DateRangeTextColour[8]}" IsVisible="{Binding DateRangeVisible[8]}"/>
+                        <Image Grid.Row="1" Grid.Column="1" Source="{Binding DateRangeJobType[8]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[9]}" TextColor="{Binding DateRangeTextColour[9]}" IsVisible="{Binding DateRangeVisible[9]}"/>
+                        <Image Grid.Row="1" Grid.Column="2" Source="{Binding DateRangeJobType[9]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[10]}" TextColor="{Binding DateRangeTextColour[10]}" IsVisible="{Binding DateRangeVisible[10]}"/>
+                        <Image Grid.Row="1" Grid.Column="3" Source="{Binding DateRangeJobType[10]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[11]}" TextColor="{Binding DateRangeTextColour[11]}" IsVisible="{Binding DateRangeVisible[11]}"/>
+                        <Image Grid.Row="1" Grid.Column="4" Source="{Binding DateRangeJobType[11]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[12]}" TextColor="{Binding DateRangeTextColour[12]}" IsVisible="{Binding DateRangeVisible[12]}"/>
+                        <Image Grid.Row="1" Grid.Column="5" Source="{Binding DateRangeJobType[12]}" />
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[13]}" TextColor="{Binding DateRangeTextColour[13]}" IsVisible="{Binding DateRangeVisible[13]}"/>
+                        <Image Grid.Row="1" Grid.Column="6" Source="{Binding DateRangeJobType[13]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[14]}" TextColor="{Binding DateRangeTextColour[14]}" IsVisible="{Binding DateRangeVisible[14]}"/>
+                        <Image Grid.Row="2" Grid.Column="0" Source="{Binding DateRangeJobType[14]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[15]}" TextColor="{Binding DateRangeTextColour[15]}" IsVisible="{Binding DateRangeVisible[15]}"/>
+                        <Image Grid.Row="2" Grid.Column="1" Source="{Binding DateRangeJobType[15]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[16]}" TextColor="{Binding DateRangeTextColour[16]}" IsVisible="{Binding DateRangeVisible[16]}"/>
+                        <Image Grid.Row="2" Grid.Column="2" Source="{Binding DateRangeJobType[16]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[17]}" TextColor="{Binding DateRangeTextColour[17]}" IsVisible="{Binding DateRangeVisible[17]}"/>
+                        <Image Grid.Row="2" Grid.Column="3" Source="{Binding DateRangeJobType[17]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[18]}" TextColor="{Binding DateRangeTextColour[18]}" IsVisible="{Binding DateRangeVisible[18]}"/>
+                        <Image Grid.Row="2" Grid.Column="4" Source="{Binding DateRangeJobType[18]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[19]}" TextColor="{Binding DateRangeTextColour[19]}" IsVisible="{Binding DateRangeVisible[19]}"/>
+                        <Image Grid.Row="2" Grid.Column="5" Source="{Binding DateRangeJobType[19]}" />
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[20]}" TextColor="{Binding DateRangeTextColour[20]}" IsVisible="{Binding DateRangeVisible[20]}"/>
+                        <Image Grid.Row="2" Grid.Column="6" Source="{Binding DateRangeJobType[20]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[21]}" TextColor="{Binding DateRangeTextColour[21]}" IsVisible="{Binding DateRangeVisible[21]}"/>
+                        <Image Grid.Row="3" Grid.Column="0" Source="{Binding DateRangeJobType[21]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[22]}" TextColor="{Binding DateRangeTextColour[22]}" IsVisible="{Binding DateRangeVisible[22]}"/>
+                        <Image Grid.Row="3" Grid.Column="1" Source="{Binding DateRangeJobType[22]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[23]}" TextColor="{Binding DateRangeTextColour[23]}" IsVisible="{Binding DateRangeVisible[23]}"/>
+                        <Image Grid.Row="3" Grid.Column="2" Source="{Binding DateRangeJobType[23]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[24]}" TextColor="{Binding DateRangeTextColour[24]}" IsVisible="{Binding DateRangeVisible[24]}"/>
+                        <Image Grid.Row="3" Grid.Column="3" Source="{Binding DateRangeJobType[24]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[25]}" TextColor="{Binding DateRangeTextColour[25]}" IsVisible="{Binding DateRangeVisible[25]}"/>
+                        <Image Grid.Row="3" Grid.Column="4" Source="{Binding DateRangeJobType[25]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[26]}" TextColor="{Binding DateRangeTextColour[26]}" IsVisible="{Binding DateRangeVisible[26]}"/>
+                        <Image Grid.Row="3" Grid.Column="5" Source="{Binding DateRangeJobType[26]}" />
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[27]}" TextColor="{Binding DateRangeTextColour[27]}" IsVisible="{Binding DateRangeVisible[27]}"/>
+                        <Image Grid.Row="3" Grid.Column="6" Source="{Binding DateRangeJobType[27]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[28]}" TextColor="{Binding DateRangeTextColour[28]}" IsVisible="{Binding DateRangeVisible[28]}"/>
+                        <Image Grid.Row="4" Grid.Column="0" Source="{Binding DateRangeJobType[28]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[29]}" TextColor="{Binding DateRangeTextColour[29]}" IsVisible="{Binding DateRangeVisible[29]}"/>
+                        <Image Grid.Row="4" Grid.Column="1" Source="{Binding DateRangeJobType[29]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[30]}" TextColor="{Binding DateRangeTextColour[30]}" IsVisible="{Binding DateRangeVisible[30]}"/>
+                        <Image Grid.Row="4" Grid.Column="2" Source="{Binding DateRangeJobType[30]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[31]}" TextColor="{Binding DateRangeTextColour[31]}" IsVisible="{Binding DateRangeVisible[31]}"/>
+                        <Image Grid.Row="4" Grid.Column="3" Source="{Binding DateRangeJobType[31]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[32]}" TextColor="{Binding DateRangeTextColour[32]}" IsVisible="{Binding DateRangeVisible[32]}"/>
+                        <Image Grid.Row="4" Grid.Column="4" Source="{Binding DateRangeJobType[32]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[33]}" TextColor="{Binding DateRangeTextColour[33]}" IsVisible="{Binding DateRangeVisible[33]}"/>
+                        <Image Grid.Row="4" Grid.Column="5" Source="{Binding DateRangeJobType[33]}" />
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[34]}" TextColor="{Binding DateRangeTextColour[34]}" IsVisible="{Binding DateRangeVisible[34]}"/>
+                        <Image Grid.Row="4" Grid.Column="6" Source="{Binding DateRangeJobType[34]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[35]}" TextColor="{Binding DateRangeTextColour[35]}" IsVisible="{Binding DateRangeVisible[35]}"/>
+                        <Image Grid.Row="5" Grid.Column="0" Source="{Binding DateRangeJobType[35]}" IsVisible="{Binding DateRangeVisible[35]}"/>
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[36]}" TextColor="{Binding DateRangeTextColour[36]}" IsVisible="{Binding DateRangeVisible[36]}"/>
+                        <!--<Image Grid.Row="5" Grid.Column="6" Source="add.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding AddJobCommand}" CommandParameter=""/>
+                            </Image.GestureRecognizers>
+                        </Image>-->
+                    </Grid>
+                </StackLayout>
+                
+                <StackLayout Padding="10">
+                    <ListView 
                 ItemsSource="{Binding JobList}" 
                 ItemTapped="OnItemTapped" 
                 ItemSelected="OnItemSelected"
                 x:Name="JobListView" RowHeight="45">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Date.LocalDateTime,StringFormat='{0:dd/MM}'}" VerticalOptions="Center"/>
-                                <Image HeightRequest="20" Source="{Binding Path=TypeImage}" VerticalOptions="Center"/>
-                                <Label Text="{Binding Description}" VerticalOptions="Center"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="{Binding Date.LocalDateTime,StringFormat='{0:dd/MM}'}" VerticalOptions="Center"/>
+                                        <Image HeightRequest="20" Source="{Binding Path=TypeImage}" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Description}" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                
+            </StackLayout.Children>
         </StackLayout>
+
+       
     </ContentPage.Content>
 </ContentPage>

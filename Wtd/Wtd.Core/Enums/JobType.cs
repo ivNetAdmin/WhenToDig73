@@ -1,7 +1,7 @@
 ﻿
 namespace Wtd.Core.Enums
 {
-    public enum PlantType
+    public enum JobType
     {
         Planting = 0,
         Cultivate = 1,

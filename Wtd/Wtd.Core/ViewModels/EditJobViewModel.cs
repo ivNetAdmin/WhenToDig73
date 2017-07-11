@@ -29,9 +29,9 @@ namespace Wtd.Core.ViewModels
 
             var jobTypes = new List<string>();
 
-            for (int i = 0; i<Enum.GetNames(typeof(PlantType)).Length;i++)
+            for (int i = 0; i<Enum.GetNames(typeof(JobType)).Length;i++)
             {
-                jobTypes.Add(Enum.GetName(typeof(PlantType), i));
+                jobTypes.Add(Enum.GetName(typeof(JobType), i));
             }
 
             JobTypes = jobTypes;
