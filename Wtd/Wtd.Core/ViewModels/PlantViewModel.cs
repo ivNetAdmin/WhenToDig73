@@ -43,11 +43,16 @@ namespace Wtd.Core.ViewModels
 
         private void GetPlants()
         {
-            PlantList = new ObservableCollection<Plant>(_realm.All<Plant>());
-            //foreach (var plant in new List<Plant>(queryArray))
-            //{
-            //    if (!_plantList.Contains(plant.Description)) _plantList.Add(plant.Description);
-            //}
+
+            _plantList.Clear();
+            var queryArray = _realm.All<Plant>().AsEnumerable().OrderBy(p => p.Description);
+
+            foreach (var plant in new List<Plant>(queryArray))
+            {
+                _plantList.Add(plant);
+            }         
+
+            PlantList = _plantList;
         }
 
         internal void AddOrUpdatePlant(Plant plant)

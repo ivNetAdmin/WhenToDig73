@@ -303,7 +303,7 @@
                 </StackLayout>
 
                 <StackLayout Padding="10">
-                    <ListView 
+                    <ListView
                 ItemsSource="{Binding JobList}" 
                 ItemTapped="OnItemTapped" 
                 ItemSelected="OnItemSelected"
@@ -323,6 +323,8 @@
                     </ListView>
                 </StackLayout>
 
+                <Label Text="{Binding JobList.Count}" />
+                
                 <Grid VerticalOptions="End">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

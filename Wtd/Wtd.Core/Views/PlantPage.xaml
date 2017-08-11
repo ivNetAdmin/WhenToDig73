@@ -12,40 +12,38 @@
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding AddOrUpdatePlantCommand}"/>
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <StackLayout Padding="10" Spacing="5" VerticalOptions = "Start">
-            <StackLayout.Children>
-                <StackLayout Padding="10">
-                    <ListView 
+    <StackLayout Padding="10" Spacing="5">
+
+        <ListView 
                 ItemsSource="{Binding PlantList}" 
                 ItemTapped="OnItemTapped" 
                 ItemSelected="OnItemSelected"
-                VerticalOptions="Start"
+                VerticalOptions="FillAndExpand" 
                 x:Name="PlantListView">
-                        <ListView.ItemTemplate>
+            <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label  HeightRequest="20" Text="{Binding Description}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Label HeightRequest="60" Text="{Binding Description}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </StackLayout>
 
-                <Grid VerticalOptions="End">
+        <Label Text="{Binding PlantList.Count}" />
+
+        <Grid VerticalOptions="End">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
 
-                    <Image Grid.Row="0" Grid.Column="2" Source="{Binding JobIcon}" HorizontalOptions="End" HeightRequest="50">
+                    <Image Grid.Row="0" Grid.Column="0" Source="{Binding JobIcon}" HorizontalOptions="End" HeightRequest="50">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding JobClickedCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
                 </Grid>
-            </StackLayout.Children>
-        </StackLayout>
-    </ContentPage.Content>
+
+    </StackLayout>
 </ContentPage>
