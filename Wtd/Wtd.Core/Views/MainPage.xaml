@@ -323,8 +323,6 @@
                     </ListView>
                 </StackLayout>
 
-                <Label Text="{Binding JobList.Count}" />
-                
                 <Grid VerticalOptions="End">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>

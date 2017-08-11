@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Wtd.Core.Models;
 using Wtd.Core.Services;
+using Wtd.Core.Views;
 using Xamarin.Forms;
 
 namespace Wtd.Core.ViewModels
@@ -70,7 +71,7 @@ namespace Wtd.Core.ViewModels
 
         internal void JobClicked()
         {
-            NavigationService.Navigate(true);          
+            Application.Current.MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)

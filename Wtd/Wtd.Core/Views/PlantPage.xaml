@@ -21,17 +21,15 @@
                 VerticalOptions="FillAndExpand" 
                 x:Name="PlantListView">
             <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout Orientation="Horizontal">
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
                             <Label HeightRequest="60" Text="{Binding Description}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-
-        <Label Text="{Binding PlantList.Count}" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Grid VerticalOptions="End">
                     <Grid.RowDefinitions>
