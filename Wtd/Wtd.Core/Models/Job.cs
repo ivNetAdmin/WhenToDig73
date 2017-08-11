@@ -1,6 +1,7 @@
 ﻿
 using Realms;
 using System;
+using Xamarin.Forms;
 
 namespace Wtd.Core.Models
 {
@@ -16,5 +17,8 @@ namespace Wtd.Core.Models
 
         [Ignored]
         public  DateTime CalendarDate { get; set; }
+
+        [Ignored]
+        public Color TextColor { get; set; }
     }
 }

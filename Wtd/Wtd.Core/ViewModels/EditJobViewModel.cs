@@ -18,6 +18,9 @@ namespace Wtd.Core.ViewModels
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
+        public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
+        public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
+
         public EditJobViewModel(Realm realm, Job job )
         {
             SaveCommand = new Command(Save);

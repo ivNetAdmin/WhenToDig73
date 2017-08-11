@@ -1,18 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Wtd.Core.ViewModels;assembly=Wtd.Core"
              x:Class="Wtd.Core.Views.MainPage">
 
+    <ContentPage.BindingContext>
+        <models:MainViewModel />
+    </ContentPage.BindingContext>
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add" Command="{Binding AddOrUpdateJobCommand}"/>
+        <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding AddOrUpdateJobCommand}"/>
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <!--
-        Command="{Binding ChangeCalendarCommand}"
-        Text="{Binding DisplayCalendarDate}"
-        -->
-        <StackLayout Padding="10" Spacing="5" VerticalOptions = "Start">
+
+        <StackLayout Padding="10" Spacing="5" VerticalOptions="Start">
             <StackLayout.Children>
                 <StackLayout BackgroundColor="DarkSlateGray" Padding="10">
                     <Grid VerticalOptions="Start">
@@ -41,110 +43,301 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[0]}" TextColor="{Binding DateRangeTextColour[0]}" IsVisible="{Binding DateRangeVisible[0]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[0]}" TextColor="{Binding DateRangeTextColour[0]}" IsVisible="{Binding DateRangeVisible[0]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[0]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="0" Source="{Binding DateRangeJobType[0]}" />
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[1]}" TextColor="{Binding DateRangeTextColour[1]}" IsVisible="{Binding DateRangeVisible[1]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[1]}" TextColor="{Binding DateRangeTextColour[1]}" IsVisible="{Binding DateRangeVisible[1]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[1]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="1" Source="{Binding DateRangeJobType[1]}" />
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[2]}" TextColor="{Binding DateRangeTextColour[2]}" IsVisible="{Binding DateRangeVisible[2]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[2]}" TextColor="{Binding DateRangeTextColour[2]}" IsVisible="{Binding DateRangeVisible[2]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[2]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="2" Source="{Binding DateRangeJobType[2]}" />
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[3]}" TextColor="{Binding DateRangeTextColour[3]}" IsVisible="{Binding DateRangeVisible[3]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[3]}" TextColor="{Binding DateRangeTextColour[3]}" IsVisible="{Binding DateRangeVisible[3]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[3]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="3" Source="{Binding DateRangeJobType[3]}" />
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[4]}" TextColor="{Binding DateRangeTextColour[4]}" IsVisible="{Binding DateRangeVisible[4]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[4]}" TextColor="{Binding DateRangeTextColour[4]}" IsVisible="{Binding DateRangeVisible[4]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[4]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="4" Source="{Binding DateRangeJobType[4]}" />
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[5]}" TextColor="{Binding DateRangeTextColour[5]}" IsVisible="{Binding DateRangeVisible[5]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[5]}" TextColor="{Binding DateRangeTextColour[5]}" IsVisible="{Binding DateRangeVisible[5]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[5]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="5" Source="{Binding DateRangeJobType[5]}" />
-                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[6]}" TextColor="{Binding DateRangeTextColour[6]}" IsVisible="{Binding DateRangeVisible[6]}"/>
+                        <Label HeightRequest="30" Grid.Row="0" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[6]}" TextColor="{Binding DateRangeTextColour[6]}" IsVisible="{Binding DateRangeVisible[6]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[6]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="0" Grid.Column="6" Source="{Binding DateRangeJobType[6]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[7]}" TextColor="{Binding DateRangeTextColour[7]}" IsVisible="{Binding DateRangeVisible[7]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[7]}" TextColor="{Binding DateRangeTextColour[7]}" IsVisible="{Binding DateRangeVisible[7]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[7]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="0" Source="{Binding DateRangeJobType[7]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[8]}" TextColor="{Binding DateRangeTextColour[8]}" IsVisible="{Binding DateRangeVisible[8]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[8]}" TextColor="{Binding DateRangeTextColour[8]}" IsVisible="{Binding DateRangeVisible[8]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[8]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="1" Source="{Binding DateRangeJobType[8]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[9]}" TextColor="{Binding DateRangeTextColour[9]}" IsVisible="{Binding DateRangeVisible[9]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[9]}" TextColor="{Binding DateRangeTextColour[9]}" IsVisible="{Binding DateRangeVisible[9]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[9]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="2" Source="{Binding DateRangeJobType[9]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[10]}" TextColor="{Binding DateRangeTextColour[10]}" IsVisible="{Binding DateRangeVisible[10]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[10]}" TextColor="{Binding DateRangeTextColour[10]}" IsVisible="{Binding DateRangeVisible[10]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[10]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="3" Source="{Binding DateRangeJobType[10]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[11]}" TextColor="{Binding DateRangeTextColour[11]}" IsVisible="{Binding DateRangeVisible[11]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[11]}" TextColor="{Binding DateRangeTextColour[11]}" IsVisible="{Binding DateRangeVisible[11]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[11]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="4" Source="{Binding DateRangeJobType[11]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[12]}" TextColor="{Binding DateRangeTextColour[12]}" IsVisible="{Binding DateRangeVisible[12]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[12]}" TextColor="{Binding DateRangeTextColour[12]}" IsVisible="{Binding DateRangeVisible[12]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[12]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="5" Source="{Binding DateRangeJobType[12]}" />
-                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[13]}" TextColor="{Binding DateRangeTextColour[13]}" IsVisible="{Binding DateRangeVisible[13]}"/>
+                        <Label HeightRequest="30" Grid.Row="1" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[13]}" TextColor="{Binding DateRangeTextColour[13]}" IsVisible="{Binding DateRangeVisible[13]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[13]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="1" Grid.Column="6" Source="{Binding DateRangeJobType[13]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[14]}" TextColor="{Binding DateRangeTextColour[14]}" IsVisible="{Binding DateRangeVisible[14]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[14]}" TextColor="{Binding DateRangeTextColour[14]}" IsVisible="{Binding DateRangeVisible[14]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[14]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="0" Source="{Binding DateRangeJobType[14]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[15]}" TextColor="{Binding DateRangeTextColour[15]}" IsVisible="{Binding DateRangeVisible[15]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[15]}" TextColor="{Binding DateRangeTextColour[15]}" IsVisible="{Binding DateRangeVisible[15]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[15]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="1" Source="{Binding DateRangeJobType[15]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[16]}" TextColor="{Binding DateRangeTextColour[16]}" IsVisible="{Binding DateRangeVisible[16]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[16]}" TextColor="{Binding DateRangeTextColour[16]}" IsVisible="{Binding DateRangeVisible[16]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[16]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="2" Source="{Binding DateRangeJobType[16]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[17]}" TextColor="{Binding DateRangeTextColour[17]}" IsVisible="{Binding DateRangeVisible[17]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[17]}" TextColor="{Binding DateRangeTextColour[17]}" IsVisible="{Binding DateRangeVisible[17]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[17]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="3" Source="{Binding DateRangeJobType[17]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[18]}" TextColor="{Binding DateRangeTextColour[18]}" IsVisible="{Binding DateRangeVisible[18]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[18]}" TextColor="{Binding DateRangeTextColour[18]}" IsVisible="{Binding DateRangeVisible[18]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[18]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="4" Source="{Binding DateRangeJobType[18]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[19]}" TextColor="{Binding DateRangeTextColour[19]}" IsVisible="{Binding DateRangeVisible[19]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[19]}" TextColor="{Binding DateRangeTextColour[19]}" IsVisible="{Binding DateRangeVisible[19]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[19]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="5" Source="{Binding DateRangeJobType[19]}" />
-                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[20]}" TextColor="{Binding DateRangeTextColour[20]}" IsVisible="{Binding DateRangeVisible[20]}"/>
+                        <Label HeightRequest="30" Grid.Row="2" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[20]}" TextColor="{Binding DateRangeTextColour[20]}" IsVisible="{Binding DateRangeVisible[20]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[20]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="2" Grid.Column="6" Source="{Binding DateRangeJobType[20]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[21]}" TextColor="{Binding DateRangeTextColour[21]}" IsVisible="{Binding DateRangeVisible[21]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[21]}" TextColor="{Binding DateRangeTextColour[21]}" IsVisible="{Binding DateRangeVisible[21]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[21]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="0" Source="{Binding DateRangeJobType[21]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[22]}" TextColor="{Binding DateRangeTextColour[22]}" IsVisible="{Binding DateRangeVisible[22]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[22]}" TextColor="{Binding DateRangeTextColour[22]}" IsVisible="{Binding DateRangeVisible[22]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[22]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="1" Source="{Binding DateRangeJobType[22]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[23]}" TextColor="{Binding DateRangeTextColour[23]}" IsVisible="{Binding DateRangeVisible[23]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[23]}" TextColor="{Binding DateRangeTextColour[23]}" IsVisible="{Binding DateRangeVisible[23]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[23]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="2" Source="{Binding DateRangeJobType[23]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[24]}" TextColor="{Binding DateRangeTextColour[24]}" IsVisible="{Binding DateRangeVisible[24]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[24]}" TextColor="{Binding DateRangeTextColour[24]}" IsVisible="{Binding DateRangeVisible[24]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[24]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="3" Source="{Binding DateRangeJobType[24]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[25]}" TextColor="{Binding DateRangeTextColour[25]}" IsVisible="{Binding DateRangeVisible[25]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[25]}" TextColor="{Binding DateRangeTextColour[25]}" IsVisible="{Binding DateRangeVisible[25]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[25]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="4" Source="{Binding DateRangeJobType[25]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[26]}" TextColor="{Binding DateRangeTextColour[26]}" IsVisible="{Binding DateRangeVisible[26]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[26]}" TextColor="{Binding DateRangeTextColour[26]}" IsVisible="{Binding DateRangeVisible[26]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[26]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="5" Source="{Binding DateRangeJobType[26]}" />
-                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[27]}" TextColor="{Binding DateRangeTextColour[27]}" IsVisible="{Binding DateRangeVisible[27]}"/>
+                        <Label HeightRequest="30" Grid.Row="3" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[27]}" TextColor="{Binding DateRangeTextColour[27]}" IsVisible="{Binding DateRangeVisible[27]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[27]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="3" Grid.Column="6" Source="{Binding DateRangeJobType[27]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[28]}" TextColor="{Binding DateRangeTextColour[28]}" IsVisible="{Binding DateRangeVisible[28]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[28]}" TextColor="{Binding DateRangeTextColour[28]}" IsVisible="{Binding DateRangeVisible[28]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[28]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="0" Source="{Binding DateRangeJobType[28]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[29]}" TextColor="{Binding DateRangeTextColour[29]}" IsVisible="{Binding DateRangeVisible[29]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[29]}" TextColor="{Binding DateRangeTextColour[29]}" IsVisible="{Binding DateRangeVisible[29]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[29]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="1" Source="{Binding DateRangeJobType[29]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[30]}" TextColor="{Binding DateRangeTextColour[30]}" IsVisible="{Binding DateRangeVisible[30]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[30]}" TextColor="{Binding DateRangeTextColour[30]}" IsVisible="{Binding DateRangeVisible[30]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[30]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="2" Source="{Binding DateRangeJobType[30]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[31]}" TextColor="{Binding DateRangeTextColour[31]}" IsVisible="{Binding DateRangeVisible[31]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[31]}" TextColor="{Binding DateRangeTextColour[31]}" IsVisible="{Binding DateRangeVisible[31]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[31]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="3" Source="{Binding DateRangeJobType[31]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[32]}" TextColor="{Binding DateRangeTextColour[32]}" IsVisible="{Binding DateRangeVisible[32]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[32]}" TextColor="{Binding DateRangeTextColour[32]}" IsVisible="{Binding DateRangeVisible[32]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[32]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="4" Source="{Binding DateRangeJobType[32]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[33]}" TextColor="{Binding DateRangeTextColour[33]}" IsVisible="{Binding DateRangeVisible[33]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[33]}" TextColor="{Binding DateRangeTextColour[33]}" IsVisible="{Binding DateRangeVisible[33]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[33]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="5" Source="{Binding DateRangeJobType[33]}" />
-                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[34]}" TextColor="{Binding DateRangeTextColour[34]}" IsVisible="{Binding DateRangeVisible[34]}"/>
+                        <Label HeightRequest="30" Grid.Row="4" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[34]}" TextColor="{Binding DateRangeTextColour[34]}" IsVisible="{Binding DateRangeVisible[34]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[34]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
                         <Image Grid.Row="4" Grid.Column="6" Source="{Binding DateRangeJobType[34]}" />
-                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[35]}" TextColor="{Binding DateRangeTextColour[35]}" IsVisible="{Binding DateRangeVisible[35]}"/>
-                        <Image Grid.Row="5" Grid.Column="0" Source="{Binding DateRangeJobType[35]}" IsVisible="{Binding DateRangeVisible[35]}"/>
-                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[36]}" TextColor="{Binding DateRangeTextColour[36]}" IsVisible="{Binding DateRangeVisible[36]}"/>
-                        <!--<Image Grid.Row="5" Grid.Column="6" Source="add.png">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding AddJobCommand}" CommandParameter=""/>
-                            </Image.GestureRecognizers>
-                        </Image>-->
+
+
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="0" HorizontalOptions="Center" Text="{Binding DateRangeDate[35]}" TextColor="{Binding DateRangeTextColour[35]}" IsVisible="{Binding DateRangeVisible[35]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[35]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="0" Source="{Binding DateRangeJobType[35]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="1" HorizontalOptions="Center" Text="{Binding DateRangeDate[36]}" TextColor="{Binding DateRangeTextColour[36]}" IsVisible="{Binding DateRangeVisible[36]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[36]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="1" Source="{Binding DateRangeJobType[36]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="2" HorizontalOptions="Center" Text="{Binding DateRangeDate[37]}" TextColor="{Binding DateRangeTextColour[37]}" IsVisible="{Binding DateRangeVisible[37]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[37]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="2" Source="{Binding DateRangeJobType[37]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="3" HorizontalOptions="Center" Text="{Binding DateRangeDate[38]}" TextColor="{Binding DateRangeTextColour[38]}" IsVisible="{Binding DateRangeVisible[38]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[38]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="3" Source="{Binding DateRangeJobType[38]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="4" HorizontalOptions="Center" Text="{Binding DateRangeDate[39]}" TextColor="{Binding DateRangeTextColour[39]}" IsVisible="{Binding DateRangeVisible[39]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[39]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="4" Source="{Binding DateRangeJobType[39]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="5" HorizontalOptions="Center" Text="{Binding DateRangeDate[40]}" TextColor="{Binding DateRangeTextColour[40]}" IsVisible="{Binding DateRangeVisible[40]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[40]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="5" Source="{Binding DateRangeJobType[40]}" />
+                        <Label HeightRequest="30" Grid.Row="5" Grid.Column="6" HorizontalOptions="Center" Text="{Binding DateRangeDate[41]}" TextColor="{Binding DateRangeTextColour[41]}" IsVisible="{Binding DateRangeVisible[41]}">
+                            <Label.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding CalendarDatePickedCommand}" CommandParameter="{Binding CalendarDates[41]}" />
+                            </Label.GestureRecognizers>
+                        </Label>
+                        <Image Grid.Row="5" Grid.Column="6" Source="{Binding DateRangeJobType[41]}" />
+
+
                     </Grid>
                 </StackLayout>
-                
+
                 <StackLayout Padding="10">
                     <ListView 
                 ItemsSource="{Binding JobList}" 
                 ItemTapped="OnItemTapped" 
                 ItemSelected="OnItemSelected"
-                x:Name="JobListView" RowHeight="45">
+                VerticalOptions="Start"
+                x:Name="JobListView">
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <ViewCell>
                                     <StackLayout Orientation="Horizontal">
-                                        <Label Text="{Binding Date.LocalDateTime,StringFormat='{0:dd/MM}'}" VerticalOptions="Center"/>
-                                        <Image HeightRequest="20" Source="{Binding Path=TypeImage}" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Description}" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Date.LocalDateTime,StringFormat='{0:dd}'}" TextColor ="{Binding TextColor}" VerticalOptions="Center" HorizontalOptions="Start" MinimumWidthRequest="30"/>
+                                        <Label Text="{Binding Description}" TextColor ="{Binding TextColor}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                                        <Image HeightRequest="20" Source="{Binding Path=TypeImage}" VerticalOptions="Center" HorizontalOptions="End"/>
                                     </StackLayout>
                                 </ViewCell>
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
                 </StackLayout>
-                
+
+                <Grid VerticalOptions="End">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" Source="{Binding FrostIcon}" HorizontalOptions="Start" HeightRequest="50" />
+                    <Image Grid.Row="0" Grid.Column="2" Source="{Binding PlantIcon}" HorizontalOptions="End" HeightRequest="50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding PlantClickedCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
             </StackLayout.Children>
         </StackLayout>
-
        
+
+
     </ContentPage.Content>
 </ContentPage>

@@ -11,12 +11,12 @@ namespace Wtd
 		{
 			InitializeComponent();
 
-            var mainPage = new MainPage
-            {
-                BindingContext = new MainViewModel()
-            };
+           // var mainPage = new MainPage
+           // {
+//BindingContext = new MainViewModel()
+            //};
 
-            MainPage = new NavigationPage(mainPage);
+            MainPage = new NavigationPage(new MainPage());
 		}
 
 		protected override void OnStart ()

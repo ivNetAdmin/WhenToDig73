@@ -9,14 +9,14 @@
             <converters:DateTimeOffsetToDateTimeConverter x:Key="DateTimeOffsetToDateTimeConverter"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Command="{Binding SaveCommand}"/>
-        <ToolbarItem Text="Delete" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding SaveCommand}"/>
     </ContentPage.ToolbarItems>
     
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="10" Spacing="5" VerticalOptions="Start">
             <Entry Text="{Binding Job.Description}" Placeholder="Job Description"/>
             <DatePicker Date="{Binding Job.CalendarDate}">
                 <DatePicker.Format>ddMMMyyyy</DatePicker.Format>

@@ -1,6 +1,7 @@
 ﻿
 using Realms;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Wtd.Core.Models;
@@ -16,6 +17,13 @@ namespace Wtd.Core.ViewModels
 
         public Command<Job> AddOrUpdateJobCommand { get; }
         public Command ChangeCalendarCommand { get; }
+        public Command CalendarDatePickedCommand{ get; }
+
+        public Command PlantClickedCommand { get; }
+        
+        public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
+        public ImageSource PlantIcon { get { return ImageSource.FromFile("plant.png"); } }
+        public ImageSource FrostIcon { get { return ImageSource.FromFile("frost.png"); } }
 
         public MainViewModel()
         {
@@ -23,12 +31,16 @@ namespace Wtd.Core.ViewModels
             _realm = Realm.GetInstance();
             _currentDate = DateTimeOffset.Now;
             _dateRangeDate = new ObservableCollection<string>();
+            _calendarDates = new ObservableCollection<DateTime>();
             _dateRangeJobType = new ObservableCollection<string>();
             _dateRangeTextColour = new ObservableCollection<Color>();
             _dateRangeVisible = new ObservableCollection<Boolean>();
                       
             AddOrUpdateJobCommand = new Command<Job>(AddOrUpdateJob);
             ChangeCalendarCommand = new Command(ChangeCalendar);
+            CalendarDatePickedCommand = new Command(CalendarDatePicked);
+
+            PlantClickedCommand = new Command(PlantClicked);
 
             SetDateRange();
         }
@@ -47,8 +59,22 @@ namespace Wtd.Core.ViewModels
             }
         }
 
+        private ObservableCollection<DateTime> _calendarDates;
+        public ObservableCollection<DateTime> CalendarDates
+        {
+            get { return _calendarDates; }
+            set
+            {
+                if (_calendarDates != value)
+                {
+                    _calendarDates = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private ObservableCollection<string> _dateRangeDate;
-        public ObservableCollection<String> DateRangeDate
+        public ObservableCollection<string> DateRangeDate
         {
             get { return _dateRangeDate; }
             set
@@ -91,7 +117,7 @@ namespace Wtd.Core.ViewModels
             }
         }
 
-        private ObservableCollection<Job> _jobList;
+        private ObservableCollection<Job> _jobList = new ObservableCollection<Job>();
         public ObservableCollection<Job> JobList
         {
             get { return _jobList; }
@@ -102,41 +128,10 @@ namespace Wtd.Core.ViewModels
             }
         }
 
-        internal void AddOrUpdateJob(Job job)
-        {
-            if(job==null)
-            {
-                job = new Job { Description = string.Empty, Date = DateTimeOffset.Now, Type = 1 };
-            }
-
-            _realm.Write(() => _realm.Add(job, update: true));
-
-            var vm = new EditJobViewModel(_realm, job);
-            NavigationService.Navigate(vm);
-        }
-
-        internal void ChangeCalendar(object param)
-        {
-            switch ((string)param)
-            {
-                case "NextMonth":
-                    _currentDate = _currentDate.AddMonths(1);
-                    break;
-                case "NextYear":
-                    _currentDate = _currentDate.AddYears(1);
-                    break;
-                case "LastMonth":
-                    _currentDate = _currentDate.AddMonths(-1);
-                    break;
-                case "LastYear":
-                    _currentDate = _currentDate.AddYears(-1);
-                    break;
-            }
-            SetDateRange();
-        }
-
         private void SetDateRange()
         {
+            _jobList.Clear();
+            _calendarDates.Clear();
             _dateRangeDate.Clear();
             _dateRangeTextColour.Clear();
             _dateRangeVisible.Clear();
@@ -151,7 +146,16 @@ namespace Wtd.Core.ViewModels
             DisplayCalendarDate = fistOfTheMonth.ToString("MMM yyyy");
 
             var queryArray = _realm.All<Job>().AsEnumerable().Where(j => j.Date >= startDate && j.Date <= endDate).OrderBy(j => j.Date).ThenBy(j => j.Type);
-            JobList = new ObservableCollection<Job>(queryArray);
+
+            foreach (var job in new List<Job>(queryArray))
+            {
+                var fontColour = Color.DarkSlateGray;
+                if (job.Date.Month < _currentDate.Month || job.Date.Month > _currentDate.Month) fontColour = Color.Gray;
+                
+                job.TextColor = fontColour;
+                _jobList.Add(job);
+            }
+         
 
             for (int i = 0; i < 42; i++)
             {
@@ -167,6 +171,7 @@ namespace Wtd.Core.ViewModels
 
                 _dateRangeTextColour.Add(fontColour);
                 _dateRangeDate.Add(day.ToString("D2"));
+                _calendarDates.Add(date);
 
                 if (i == 35 && day < 10) visible = false;
                 _dateRangeVisible.Add(visible);
@@ -178,6 +183,8 @@ namespace Wtd.Core.ViewModels
             DateRangeDate = _dateRangeDate;
             DateRangeTextColour = _dateRangeTextColour;
             DateRangeVisible = _dateRangeVisible;
+            CalendarDates = _calendarDates;
+            JobList = _jobList;
         }
 
         private void SetCellBackgroundImage(DateTime date)
@@ -189,7 +196,7 @@ namespace Wtd.Core.ViewModels
                 .Where(j => j.Date >= startDate
                 && j.Date <= endDate).OrderBy(j => j.Date).ThenBy(j => j.Type);
 
-            var jobs = new ObservableCollection<Job>(queryArray);
+            var jobs = new List<Job>(queryArray);
 
             var types = new string[3];
 
@@ -218,6 +225,56 @@ namespace Wtd.Core.ViewModels
                 _dateRangeJobType.Add(image);
             }
 
+        }
+
+        internal void AddOrUpdateJob(Job job)
+        {
+            if (job == null)
+            {
+                job = new Job { Description = string.Empty, Date = DateTimeOffset.Now, Type = 1 };
+            }
+
+            _realm.Write(() => _realm.Add(job, update: true));
+
+            var vm = new EditJobViewModel(_realm, job);
+            NavigationService.Navigate(vm);
+        }
+
+        internal void ChangeCalendar(object param)
+        {
+            switch ((string)param)
+            {
+                case "NextMonth":
+                    _currentDate = _currentDate.AddMonths(1);
+                    break;
+                case "NextYear":
+                    _currentDate = _currentDate.AddYears(1);
+                    break;
+                case "LastMonth":
+                    _currentDate = _currentDate.AddMonths(-1);
+                    break;
+                case "LastYear":
+                    _currentDate = _currentDate.AddYears(-1);
+                    break;
+            }
+            SetDateRange();
+        }    
+
+        internal void CalendarDatePicked (object param)
+        {
+            var job = new Job { Description = string.Empty, Date = new DateTimeOffset((DateTime)param), Type = 1 };
+            AddOrUpdateJob(job);
+        }
+
+        internal void PlantClicked()
+        {
+
+            var vm = new PlantViewModel();
+            NavigationService.Navigate(vm);
+        }
+
+        protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs) {
+            SetDateRange();
         }
     }
 }
