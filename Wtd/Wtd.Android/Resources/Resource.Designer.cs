@@ -2741,11 +2741,11 @@ namespace Wtd.Droid
 			// aapt resource value: 0x7f02010d
 			public const int notification_icon_background = 2130837773;
 			
-			// aapt resource value: 0x7f02011d
-			public const int notification_template_icon_bg = 2130837789;
-			
 			// aapt resource value: 0x7f02011e
-			public const int notification_template_icon_low_bg = 2130837790;
+			public const int notification_template_icon_bg = 2130837790;
+			
+			// aapt resource value: 0x7f02011f
+			public const int notification_template_icon_low_bg = 2130837791;
 			
 			// aapt resource value: 0x7f02010e
 			public const int notification_tile_bg = 2130837774;
@@ -2760,37 +2760,40 @@ namespace Wtd.Droid
 			public const int save = 2130837777;
 			
 			// aapt resource value: 0x7f020112
-			public const int t1 = 2130837778;
+			public const int splash = 2130837778;
 			
 			// aapt resource value: 0x7f020113
-			public const int t2 = 2130837779;
+			public const int t1 = 2130837779;
 			
 			// aapt resource value: 0x7f020114
-			public const int t3 = 2130837780;
+			public const int t2 = 2130837780;
 			
 			// aapt resource value: 0x7f020115
-			public const int tt1 = 2130837781;
+			public const int t3 = 2130837781;
 			
 			// aapt resource value: 0x7f020116
-			public const int tt12 = 2130837782;
+			public const int tt1 = 2130837782;
 			
 			// aapt resource value: 0x7f020117
-			public const int tt123 = 2130837783;
+			public const int tt12 = 2130837783;
 			
 			// aapt resource value: 0x7f020118
-			public const int tt13 = 2130837784;
+			public const int tt123 = 2130837784;
 			
 			// aapt resource value: 0x7f020119
-			public const int tt2 = 2130837785;
+			public const int tt13 = 2130837785;
 			
 			// aapt resource value: 0x7f02011a
-			public const int tt23 = 2130837786;
+			public const int tt2 = 2130837786;
 			
 			// aapt resource value: 0x7f02011b
-			public const int tt3 = 2130837787;
+			public const int tt23 = 2130837787;
 			
 			// aapt resource value: 0x7f02011c
-			public const int ttblank = 2130837788;
+			public const int tt3 = 2130837788;
+			
+			// aapt resource value: 0x7f02011d
+			public const int ttblank = 2130837789;
 			
 			static Drawable()
 			{
@@ -5029,6 +5032,9 @@ namespace Wtd.Droid
 			
 			// aapt resource value: 0x7f0b000a
 			public const int Widget_MediaRouter_MediaRouteButton = 2131427338;
+			
+			// aapt resource value: 0x7f0b018c
+			public const int splashscreen = 2131427724;
 			
 			static Style()
 			{

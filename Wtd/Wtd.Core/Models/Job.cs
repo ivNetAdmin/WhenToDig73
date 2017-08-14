@@ -12,8 +12,10 @@ namespace Wtd.Core.Models
 
         public DateTimeOffset Date { get; set; }
         public string Description { get; set; }
+        public string PlantName { get; set; }
         public int Type { get; set; }
         public string TypeImage { get; set; }
+        public string Notes { get; set; }
 
         [Ignored]
         public  DateTime CalendarDate { get; set; }

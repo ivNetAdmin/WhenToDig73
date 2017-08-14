@@ -230,12 +230,17 @@ namespace Wtd.Core.ViewModels
 
         internal void AddOrUpdateJob(Job job)
         {
-            if (job == null)
+            if (job == null || !job.IsManaged)
             {
-                job = new Job { Description = string.Empty, Date = DateTimeOffset.Now, Type = 1 };
-            }
+                if (job == null)
+                    job = new Job { Description = string.Empty, PlantName = string.Empty, Notes = string.Empty, Date = DateTimeOffset.Now, Type = 1 };
 
-            _realm.Write(() => _realm.Add(job, update: true));
+                _realm.Write(() => _realm.Add(job, update: true));
+            }
+            else
+            {
+                job = _realm.All<Job>().Where(j => j.JodID == job.JodID).FirstOrDefault();
+            }
 
             var vm = new EditJobViewModel(_realm, job);
             NavigationService.Navigate(vm);
@@ -263,7 +268,7 @@ namespace Wtd.Core.ViewModels
 
         internal void CalendarDatePicked (object param)
         {
-            var job = new Job { Description = string.Empty, Date = new DateTimeOffset((DateTime)param), Type = 1 };
+            var job = new Job { Description = string.Empty, PlantName = string.Empty, Notes = string.Empty, Date = new DateTimeOffset((DateTime)param), Type = 1 };
             AddOrUpdateJob(job);
         }
 

@@ -12,5 +12,14 @@ namespace Wtd.Core.Models
         public string Description { get; set; }
         public string Variety { get; set; }
         public string Notes { get; set; }
+
+        [Ignored]
+        public string FullPlantName
+        {
+            get
+            {
+                return string.Format("{0} [{1}]", Description, Variety);
+            }
+        }
     }
 }

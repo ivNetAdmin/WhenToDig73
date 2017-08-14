@@ -61,9 +61,12 @@ namespace Wtd.Core.ViewModels
             if (plant == null)
             {
                 plant = new Plant { Description = string.Empty, Variety = "Common", Notes = string.Empty };
+                _realm.Write(() => _realm.Add(plant, update: true));
             }
-
-            _realm.Write(() => _realm.Add(plant, update: true));
+            else
+            {
+                plant = _realm.All<Plant>().Where(p => p.PlantID == plant.PlantID).FirstOrDefault();
+            }
 
             var vm = new EditPlantViewModel(plant);
             NavigationService.Navigate(vm);
