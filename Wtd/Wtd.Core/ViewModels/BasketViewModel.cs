@@ -20,10 +20,10 @@ namespace Wtd.Core.ViewModels
         public string Season { get; set; }
 
         public Command<Basket> AddOrUpdateBasketCommand { get; }
-        public Command PlantClickedCommand { get; }        
+        public Command JobClickedCommand { get; }
 
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
-        public ImageSource PlantIcon { get { return ImageSource.FromFile("plant.png"); } }
+        public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }
 
         private ObservableCollection<Basket> _basketList = new ObservableCollection<Basket>();
         public ObservableCollection<Basket> BasketList
@@ -41,7 +41,7 @@ namespace Wtd.Core.ViewModels
             _realm = Realm.GetInstance();
 
             AddOrUpdateBasketCommand = new Command<Basket>(AddOrUpdateBasket);
-            PlantClickedCommand = new Command(PlantClicked);
+            JobClickedCommand = new Command(JobClicked);
 
             Seasons = GetSeasons();
 
@@ -78,9 +78,9 @@ namespace Wtd.Core.ViewModels
             NavigationService.Navigate(vm);
         }
 
-        internal void PlantClicked()
+        internal void JobClicked()
         {
-            Application.Current.MainPage = new NavigationPage(new PlantPage());
+            Application.Current.MainPage = new NavigationPage(new MainPage());
         }
 
         private IEnumerable<string> GetSeasons()
@@ -107,6 +107,11 @@ namespace Wtd.Core.ViewModels
                 }
             }
             return seasons;
+        }
+
+        protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)
+        {
+            GetBaskets();
         }
     }
 }

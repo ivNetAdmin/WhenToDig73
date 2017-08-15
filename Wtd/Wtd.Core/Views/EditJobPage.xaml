@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Wtd.Core.Views.EditJobPage"
-             xmlns:converters="clr-namespace:Wtd.Core.Converters">
+             xmlns:converters="clr-namespace:Wtd.Core.Converters"
+             NavigationPage.HasBackButton="False"
+             Title="Update Job">
 
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -22,16 +22,18 @@ namespace Wtd.Core.ViewModels
 
         public Command PlantClickedCommand { get; }
         public Command ReportClickedCommand { get; }
-        
+        public Command BasketClickedCommand { get; }
+
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource ReportIcon { get { return ImageSource.FromFile("report.png"); } }
+        public ImageSource BasketIcon { get { return ImageSource.FromFile("basket.png"); } }
         public ImageSource PlantIcon { get { return ImageSource.FromFile("plant.png"); } }
         public ImageSource FrostIcon { get { return ImageSource.FromFile("frost.png"); } }
         
 
         public MainViewModel()
         {
-            Realm.DeleteRealm(new RealmConfiguration());
+            //Realm.DeleteRealm(new RealmConfiguration());
             _realm = Realm.GetInstance();
             _currentDate = DateTimeOffset.Now;
             _dateRangeDate = new ObservableCollection<string>();
@@ -45,6 +47,7 @@ namespace Wtd.Core.ViewModels
             CalendarDatePickedCommand = new Command(CalendarDatePicked);
 
             PlantClickedCommand = new Command(PlantClicked);
+            BasketClickedCommand = new Command(BasketClicked);
             ReportClickedCommand = new Command(ReportClicked);            
 
             SetDateRange();
@@ -283,6 +286,11 @@ namespace Wtd.Core.ViewModels
 
             // var vm = new PlantViewModel();
             // NavigationService.Navigate(vm);
+        }
+
+        internal void BasketClicked()
+        {
+            Application.Current.MainPage = new NavigationPage(new BasketPage());
         }
 
         internal void ReportClicked()

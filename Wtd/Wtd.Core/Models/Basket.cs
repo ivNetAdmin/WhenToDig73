@@ -13,5 +13,7 @@ namespace Wtd.Core.Models
         public string PlantName { get; set; }
         public string Yield { get; set; }
         public string Notes { get; set; }
+      
+        public string YieldImage { get; set; }       
     }
 }

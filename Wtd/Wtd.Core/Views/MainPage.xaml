@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Wtd.Core.ViewModels;assembly=Wtd.Core"
-             x:Class="Wtd.Core.Views.MainPage">
+             x:Class="Wtd.Core.Views.MainPage"
+             Title="Job Calendar">
 
     <ContentPage.BindingContext>
         <models:MainViewModel />
@@ -331,6 +332,11 @@
                     <Image Grid.Row="0" Grid.Column="1" Source="{Binding ReportIcon}" HorizontalOptions="Start" HeightRequest="50">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ReportClickedCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Grid.Row="0" Grid.Column="3" Source="{Binding BasketIcon}" HorizontalOptions="Start" HeightRequest="50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BasketClickedCommand}" />
                         </Image.GestureRecognizers>
                     </Image>
                     <Image Grid.Row="0" Grid.Column="4" Source="{Binding PlantIcon}" HorizontalOptions="End" HeightRequest="50">

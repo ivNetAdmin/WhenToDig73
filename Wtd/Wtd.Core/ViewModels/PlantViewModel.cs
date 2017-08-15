@@ -16,12 +16,10 @@ namespace Wtd.Core.ViewModels
         private readonly Realm _realm;
 
         public Command<Plant> AddOrUpdatePlantCommand { get; }
-        public Command JobClickedCommand { get; }
-        public Command BasketClickedCommand { get; }
+        public Command JobClickedCommand { get; }       
 
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
-        public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }
-        public ImageSource BasketIcon { get { return ImageSource.FromFile("basket.png"); } }
+        public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }       
 
         private ObservableCollection<Plant> _plantList = new ObservableCollection<Plant>();
         public ObservableCollection<Plant> PlantList
@@ -39,8 +37,7 @@ namespace Wtd.Core.ViewModels
             _realm = Realm.GetInstance();
 
             AddOrUpdatePlantCommand = new Command<Plant>(AddOrUpdatePlant);
-            JobClickedCommand = new Command(JobClicked);
-            BasketClickedCommand = new Command(BasketClicked);
+            JobClickedCommand = new Command(JobClicked);            
 
             GetPlants();
         }
@@ -78,12 +75,7 @@ namespace Wtd.Core.ViewModels
         internal void JobClicked()
         {
             Application.Current.MainPage = new NavigationPage(new MainPage());
-        }
-
-        internal void BasketClicked()
-        {
-            Application.Current.MainPage = new NavigationPage(new BasketPage());
-        }
+        }       
 
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)
         {

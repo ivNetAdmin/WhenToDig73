@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Wtd.Core.ViewModels;assembly=Wtd.Core"
-             x:Class="Wtd.Core.Views.BasketPage">
+             x:Class="Wtd.Core.Views.BasketPage"
+             Title="Season Yield">
 
     <ContentPage.BindingContext>
         <models:BasketViewModel />
@@ -25,7 +26,8 @@
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label HeightRequest="60" Text="{Binding PlantName}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Label Text="{Binding PlantName}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Image HeightRequest="20" Source="{Binding Path=YieldImage}" VerticalOptions="Center" HorizontalOptions="End"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -37,9 +39,9 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Grid.Column="0" Source="{Binding PlantIcon}" HorizontalOptions="End" HeightRequest="50">
+            <Image Grid.Row="0" Grid.Column="1" Source="{Binding JobIcon}" HorizontalOptions="End" HeightRequest="50">
                 <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding PlantClickedCommand}" />
+                    <TapGestureRecognizer Command="{Binding JobClickedCommand}" />
                 </Image.GestureRecognizers>
             </Image>
         </Grid>

@@ -61,8 +61,9 @@ namespace Wtd.Core.ViewModels
         private void Save()
         {
             var basket = _realm.Find<Basket>(Basket.BasketID);
-            _realm.Write(() => {
-                basket.Yield = Yield;                
+            _realm.Write(() => {               
+                basket.Yield = Yield;
+                basket.YieldImage = string.IsNullOrEmpty(Yield) ? "ttblank.png" : string.Format("{0}_basket.png", Yield);
             });
             NavigationService.Navigate(true);
         }
@@ -117,6 +118,6 @@ namespace Wtd.Core.ViewModels
                 }
             }
             return seasons;
-        }
+        }       
     }
 }
