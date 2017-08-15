@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Wtd.Core.ViewModels;assembly=Wtd.Core"
+             x:Class="Wtd.Core.Views.ReportPage">
+
+    <ContentPage.BindingContext>
+        <models:ReportViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="10" Spacing="5">
+
+        <Grid VerticalOptions="End">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="{Binding JobIcon}" HorizontalOptions="End" HeightRequest="50">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding JobClickedCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+        
+    </StackLayout>
+</ContentPage>

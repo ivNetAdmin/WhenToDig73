@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wtd.Core.Views.EditBasketPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="5" VerticalOptions="Start">
+            <Label Text="Plant"/>
+            <Picker x:Name="PlantName" ItemsSource="{Binding PlantNames}" SelectedIndex="{Binding Basket.PlantName}" />
+            <Label Text="Season"/>
+            <Picker x:Name="Season" ItemsSource="{Binding Seasons}" SelectedIndex="{Binding Basket.Season}" />
+            <Grid HorizontalOptions="Center">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0" Grid.Column="1" Source="{Binding PoorBasketIcon}" HorizontalOptions="Center" HeightRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding YieldClickedCommand}" CommandParameter="Poor" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="2" Source="{Binding AverageBasketIcon}" HorizontalOptions="Center" HeightRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding YieldClickedCommand}" CommandParameter="Average" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Image Grid.Row="0" Grid.Column="3" Source="{Binding GoodBasketIcon}" HorizontalOptions="Center" HeightRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding YieldClickedCommand}" CommandParameter="Good" />
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Grid.Row="0" Grid.Column="4" VerticalOptions="Center" Text="{Binding Yield}" TextColor="DarkOliveGreen"/>
+            </Grid>
+            <Label Text="Notes"/>
+            <Editor Text="{Binding Basket.Notes}" HeightRequest="200"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

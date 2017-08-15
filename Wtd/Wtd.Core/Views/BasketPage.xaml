@@ -2,29 +2,30 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:Wtd.Core.ViewModels;assembly=Wtd.Core"
-             x:Class="Wtd.Core.Views.PlantPage">
+             x:Class="Wtd.Core.Views.BasketPage">
 
     <ContentPage.BindingContext>
-        <models:PlantViewModel />
+        <models:BasketViewModel />
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding AddOrUpdatePlantCommand}"/>
+        <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding AddOrUpdateBasketCommand}"/>
     </ContentPage.ToolbarItems>
 
     <StackLayout Padding="10" Spacing="5">
 
+        <Label Text="Season"/>
+        <Picker x:Name="Season" ItemsSource="{Binding Seasons}" SelectedIndex="{Binding Season}" />
+
         <ListView 
-                ItemsSource="{Binding PlantList}" 
-                ItemTapped="OnItemTapped" 
-                ItemSelected="OnItemSelected"
+                ItemsSource="{Binding BasketList}"               
                 VerticalOptions="FillAndExpand" 
-                x:Name="PlantListView">
+                x:Name="BasketListView">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Label HeightRequest="60" Text="{Binding FullPlantName}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
+                            <Label HeightRequest="60" Text="{Binding PlantName}" VerticalOptions="Center" HorizontalOptions="StartAndExpand"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
@@ -35,14 +36,10 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Grid.Column="0" Source="{Binding BasketIcon}" HorizontalOptions="Start" HeightRequest="50">
+
+            <Image Grid.Row="0" Grid.Column="0" Source="{Binding PlantIcon}" HorizontalOptions="End" HeightRequest="50">
                 <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding BasketClickedCommand}" />
-                </Image.GestureRecognizers>
-            </Image>
-            <Image Grid.Row="0" Grid.Column="1" Source="{Binding JobIcon}" HorizontalOptions="End" HeightRequest="50">
-                <Image.GestureRecognizers>
-                    <TapGestureRecognizer Command="{Binding JobClickedCommand}" />
+                    <TapGestureRecognizer Command="{Binding PlantClickedCommand}" />
                 </Image.GestureRecognizers>
             </Image>
         </Grid>

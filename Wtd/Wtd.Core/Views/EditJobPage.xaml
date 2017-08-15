@@ -23,6 +23,7 @@
                 <DatePicker.Format>ddMMMyyyy</DatePicker.Format>
             </DatePicker>
             <Picker x:Name="JobType" ItemsSource="{Binding JobTypes}" SelectedIndex="{Binding Job.Type}" />
+            <Label Text="Plant"/>
             <Picker x:Name="PlantName" ItemsSource="{Binding PlantNames}" SelectedIndex="{Binding Job.PlantName}" />
             <Label Text="Notes"/>
             <Editor Text="{Binding Job.Notes}" HeightRequest="200"/>

@@ -37,15 +37,25 @@
   <ItemGroup>
     <Compile Include="Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Enums\JobType.cs" />
+    <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Plant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\BaseModel.cs" />
+    <Compile Include="ViewModels\BasketViewModel.cs" />
+    <Compile Include="ViewModels\EditBasketViewModel.cs" />
     <Compile Include="ViewModels\EditJobViewModel.cs" />
     <Compile Include="ViewModels\EditPlantViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlantViewModel.cs" />
+    <Compile Include="ViewModels\ReportViewModel.cs" />
+    <Compile Include="Views\BasketPage.xaml.cs">
+      <DependentUpon>BasketPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EditBasketPage.xaml.cs">
+      <DependentUpon>EditBasketPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditJobPage.xaml.cs">
       <DependentUpon>EditJobPage.xaml</DependentUpon>
     </Compile>
@@ -57,6 +67,9 @@
     </Compile>
     <Compile Include="Views\PlantPage.xaml.cs">
       <DependentUpon>PlantPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ReportPage.xaml.cs">
+      <DependentUpon>ReportPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +118,24 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\EditPlantPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\ReportPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\BasketPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditBasketPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

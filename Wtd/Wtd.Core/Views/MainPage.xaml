@@ -328,7 +328,12 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="{Binding FrostIcon}" HorizontalOptions="Start" HeightRequest="50" />
-                    <Image Grid.Row="0" Grid.Column="2" Source="{Binding PlantIcon}" HorizontalOptions="End" HeightRequest="50">
+                    <Image Grid.Row="0" Grid.Column="1" Source="{Binding ReportIcon}" HorizontalOptions="Start" HeightRequest="50">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ReportClickedCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <Image Grid.Row="0" Grid.Column="4" Source="{Binding PlantIcon}" HorizontalOptions="End" HeightRequest="50">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding PlantClickedCommand}" />
                         </Image.GestureRecognizers>

@@ -21,10 +21,13 @@ namespace Wtd.Core.ViewModels
         public Command CalendarDatePickedCommand{ get; }
 
         public Command PlantClickedCommand { get; }
+        public Command ReportClickedCommand { get; }
         
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
+        public ImageSource ReportIcon { get { return ImageSource.FromFile("report.png"); } }
         public ImageSource PlantIcon { get { return ImageSource.FromFile("plant.png"); } }
         public ImageSource FrostIcon { get { return ImageSource.FromFile("frost.png"); } }
+        
 
         public MainViewModel()
         {
@@ -42,6 +45,7 @@ namespace Wtd.Core.ViewModels
             CalendarDatePickedCommand = new Command(CalendarDatePicked);
 
             PlantClickedCommand = new Command(PlantClicked);
+            ReportClickedCommand = new Command(ReportClicked);            
 
             SetDateRange();
         }
@@ -281,6 +285,15 @@ namespace Wtd.Core.ViewModels
             // NavigationService.Navigate(vm);
         }
 
+        internal void ReportClicked()
+        {
+
+            Application.Current.MainPage = new NavigationPage(new ReportPage());
+
+            // var vm = new PlantViewModel();
+            // NavigationService.Navigate(vm);
+        }
+        
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs) {
             SetDateRange();
         }
