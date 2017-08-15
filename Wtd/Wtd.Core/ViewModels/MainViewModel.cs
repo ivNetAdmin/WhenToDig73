@@ -31,7 +31,7 @@ namespace Wtd.Core.ViewModels
 
         public MainViewModel()
         {
-            //Realm.DeleteRealm(new RealmConfiguration());
+            Realm.DeleteRealm(new RealmConfiguration());
             _realm = Realm.GetInstance();
             _currentDate = DateTimeOffset.Now;
             _dateRangeDate = new ObservableCollection<string>();

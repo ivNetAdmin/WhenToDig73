@@ -11,9 +11,9 @@
     <ContentPage.Content>
         <StackLayout Padding="10" Spacing="5" VerticalOptions="Start">
             <Label Text="Plant"/>
-            <Picker x:Name="PlantName" ItemsSource="{Binding PlantNames}" SelectedIndex="{Binding Basket.PlantName}" />
+            <Picker x:Name="PlantName" ItemsSource="{Binding PlantNames}" SelectedItem="{Binding Basket.PlantName}" />
             <Label Text="Season"/>
-            <Picker x:Name="Season" ItemsSource="{Binding Seasons}" SelectedIndex="{Binding Basket.Season}" />
+            <Picker x:Name="Season" ItemsSource="{Binding Seasons}" SelectedItem="{Binding Basket.Season}" />
             <Grid HorizontalOptions="Center">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
