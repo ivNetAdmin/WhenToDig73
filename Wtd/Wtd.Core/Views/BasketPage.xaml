@@ -19,7 +19,9 @@
         <Picker x:Name="Season" ItemsSource="{Binding Seasons}" SelectedIndex="{Binding Season}" />
 
         <ListView 
-                ItemsSource="{Binding BasketList}"               
+                ItemsSource="{Binding BasketList}"   
+                ItemTapped="OnItemTapped" 
+                ItemSelected="OnItemSelected"
                 VerticalOptions="FillAndExpand" 
                 x:Name="BasketListView">
             <ListView.ItemTemplate>

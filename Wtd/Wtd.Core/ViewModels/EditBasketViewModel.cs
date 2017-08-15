@@ -39,6 +39,7 @@ namespace Wtd.Core.ViewModels
 
             _realm = realm;
             Basket = basket;
+            Yield = basket.Yield;
 
             PlantNames = GetPlantNames();
             Seasons = GetSeasons();
