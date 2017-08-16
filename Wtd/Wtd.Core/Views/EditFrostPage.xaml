@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wtd.Core.Views.EditFrostPage"
+             NavigationPage.HasBackButton="False"
+             Title="Update Frost">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteCommand}"/>
+        <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding SaveCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="5" VerticalOptions="Start">
+            <DatePicker Date="{Binding Frost.CalendarDate}">
+                <DatePicker.Format>ddMMMyyyy</DatePicker.Format>
+            </DatePicker>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

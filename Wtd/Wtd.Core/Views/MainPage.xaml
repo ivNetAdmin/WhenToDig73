@@ -328,7 +328,11 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Image Grid.Row="0" Grid.Column="0" Source="{Binding FrostIcon}" HorizontalOptions="Start" HeightRequest="50" />
+                    <Image Grid.Row="0" Grid.Column="0" Source="{Binding FrostIcon}" HorizontalOptions="Start" HeightRequest="50" >
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding FrostClickedCommand}" />
+                        </Image.GestureRecognizers>
+                    </Image>
                     <Image Grid.Row="0" Grid.Column="1" Source="{Binding ReportIcon}" HorizontalOptions="Start" HeightRequest="50">
                         <Image.GestureRecognizers>
                             <TapGestureRecognizer Command="{Binding ReportClickedCommand}" />

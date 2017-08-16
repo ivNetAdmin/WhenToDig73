@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:Wtd.Core.ViewModels;assembly=Wtd.Core"
+             x:Class="Wtd.Core.Views.FrostPage"
+             Title="Frost Review">
+
+    <ContentPage.BindingContext>
+        <models:FrostViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding AddOrUpdateFrostCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <StackLayout Padding="10" Spacing="5">
+
+        <ListView 
+                ItemsSource="{Binding FrostList}"   
+                ItemTapped="OnItemTapped" 
+                ItemSelected="OnItemSelected"
+                VerticalOptions="FillAndExpand" 
+                x:Name="BasketListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Date.LocalDateTime,StringFormat='{0:dd-MMM-yyyy}'}" VerticalOptions="Center" HorizontalOptions="Start" MinimumWidthRequest="30"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <Grid VerticalOptions="End">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Image Grid.Row="0" Grid.Column="0" Source="{Binding JobIcon}" HorizontalOptions="End" HeightRequest="50">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding JobClickedCommand}" />
+                </Image.GestureRecognizers>
+            </Image>
+        </Grid>
+
+    </StackLayout>
+</ContentPage>

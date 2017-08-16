@@ -38,6 +38,7 @@
     <Compile Include="Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Enums\JobType.cs" />
     <Compile Include="Models\Basket.cs" />
+    <Compile Include="Models\Frost.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Plant.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -45,8 +46,10 @@
     <Compile Include="ViewModels\BaseModel.cs" />
     <Compile Include="ViewModels\BasketViewModel.cs" />
     <Compile Include="ViewModels\EditBasketViewModel.cs" />
+    <Compile Include="ViewModels\EditFrostViewModel.cs" />
     <Compile Include="ViewModels\EditJobViewModel.cs" />
     <Compile Include="ViewModels\EditPlantViewModel.cs" />
+    <Compile Include="ViewModels\FrostViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlantViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
@@ -56,11 +59,17 @@
     <Compile Include="Views\EditBasketPage.xaml.cs">
       <DependentUpon>EditBasketPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\EditFrostPage.xaml.cs">
+      <DependentUpon>EditFrostPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EditJobPage.xaml.cs">
       <DependentUpon>EditJobPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditPlantPage.xaml.cs">
       <DependentUpon>EditPlantPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FrostPage.xaml.cs">
+      <DependentUpon>FrostPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -136,6 +145,18 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\EditBasketPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\FrostPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\EditFrostPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

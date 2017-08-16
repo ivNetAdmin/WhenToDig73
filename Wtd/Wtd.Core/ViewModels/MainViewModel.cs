@@ -23,7 +23,8 @@ namespace Wtd.Core.ViewModels
         public Command PlantClickedCommand { get; }
         public Command ReportClickedCommand { get; }
         public Command BasketClickedCommand { get; }
-
+        public Command FrostClickedCommand { get; }
+        
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource ReportIcon { get { return ImageSource.FromFile("report.png"); } }
         public ImageSource BasketIcon { get { return ImageSource.FromFile("basket.png"); } }
@@ -48,7 +49,8 @@ namespace Wtd.Core.ViewModels
 
             PlantClickedCommand = new Command(PlantClicked);
             BasketClickedCommand = new Command(BasketClicked);
-            ReportClickedCommand = new Command(ReportClicked);            
+            ReportClickedCommand = new Command(ReportClicked);
+            FrostClickedCommand = new Command(FrostClicked);
 
             SetDateRange();
         }
@@ -297,11 +299,14 @@ namespace Wtd.Core.ViewModels
         {
 
             Application.Current.MainPage = new NavigationPage(new ReportPage());
-
-            // var vm = new PlantViewModel();
-            // NavigationService.Navigate(vm);
         }
-        
+
+        internal void FrostClicked()
+        {
+
+            Application.Current.MainPage = new NavigationPage(new FrostPage());
+        }        
+
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs) {
             SetDateRange();
         }
