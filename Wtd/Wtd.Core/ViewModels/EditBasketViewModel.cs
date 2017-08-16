@@ -64,7 +64,7 @@ namespace Wtd.Core.ViewModels
             var basket = _realm.Find<Basket>(Basket.BasketID);
             _realm.Write(() => {               
                 basket.Yield = Yield;
-                basket.YieldImage = string.IsNullOrEmpty(Yield) ? "ttblank.png" : string.Format("{0}_basket.png", Yield);
+                basket.YieldImage = string.IsNullOrEmpty(Yield) ? "ttblank.png" : string.Format("{0}_basket.png", Yield.ToLower());
             });
             NavigationService.Navigate(true);
         }
