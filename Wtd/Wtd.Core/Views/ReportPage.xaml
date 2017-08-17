@@ -10,6 +10,18 @@
     </ContentPage.BindingContext>
 
     <StackLayout Padding="10" Spacing="5">
+        <Grid VerticalOptions="Start">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="Plant" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center"/>
+            <Picker x:Name="PlantName" ItemsSource="{Binding PlantNames}" SelectedItem="{Binding PlantName}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <Label Text="Season" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center"/>
+            <Picker x:Name="Season" ItemsSource="{Binding Seasons}" SelectedItem="{Binding Season}" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <Label Text="Job" Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"/>
+            <Picker x:Name="Job" ItemsSource="{Binding JobTypes}" SelectedItem="{Binding JobType}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+        </Grid>
 
         <Grid VerticalOptions="End">
             <Grid.RowDefinitions>

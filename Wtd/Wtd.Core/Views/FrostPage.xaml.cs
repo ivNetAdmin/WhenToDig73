@@ -16,7 +16,6 @@ namespace Wtd.Core.Views
         public FrostPage()
         {
             InitializeComponent();
-            InitializeComponent();
             ((BaseModel)BindingContext).Init(this);
         }
 

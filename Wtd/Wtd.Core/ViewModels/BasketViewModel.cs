@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using Wtd.Core.Helpers;
 using Wtd.Core.Models;
 using Wtd.Core.Services;
 using Wtd.Core.Views;
@@ -43,7 +44,7 @@ namespace Wtd.Core.ViewModels
             AddOrUpdateBasketCommand = new Command<Basket>(AddOrUpdateBasket);
             JobClickedCommand = new Command(JobClicked);
 
-            Seasons = GetSeasons();
+            Seasons = ListHelper.GetSeasons(_realm);
 
             GetBaskets();
         }
@@ -83,31 +84,31 @@ namespace Wtd.Core.ViewModels
             Application.Current.MainPage = new NavigationPage(new MainPage());
         }
 
-        private IEnumerable<string> GetSeasons()
-        {
-            var seasons = new List<string>();
+        //private IEnumerable<string> GetSeasons()
+        //{
+        //    var seasons = new List<string>();
 
-            var currentSeason = DateTimeOffset.Now.Year;
+        //    var currentSeason = DateTimeOffset.Now.Year;
 
-            Season = currentSeason.ToString();
+        //    Season = currentSeason.ToString();
 
-            // get first season
-            var job = _realm.All<Job>().OrderByDescending(j => j.Date).FirstOrDefault();
-            if (job == null)
-            {
-                seasons.Add(currentSeason.ToString());
-            }
-            else
-            {
-                var firstSeason = job.Date.Year;
+        //    // get first season
+        //    var job = _realm.All<Job>().OrderByDescending(j => j.Date).FirstOrDefault();
+        //    if (job == null)
+        //    {
+        //        seasons.Add(currentSeason.ToString());
+        //    }
+        //    else
+        //    {
+        //        var firstSeason = job.Date.Year;
 
-                for (int season = firstSeason; season <= currentSeason; season++)
-                {
-                    seasons.Add(season.ToString());
-                }
-            }
-            return seasons;
-        }
+        //        for (int season = firstSeason; season <= currentSeason; season++)
+        //        {
+        //            seasons.Add(season.ToString());
+        //        }
+        //    }
+        //    return seasons;
+        //}
 
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)
         {

@@ -1,7 +1,9 @@
 ﻿
 using Realms;
 using System;
+using System.Collections.Generic;
 using System.Windows.Input;
+using Wtd.Core.Helpers;
 using Wtd.Core.Models;
 using Wtd.Core.Services;
 using Xamarin.Forms;
@@ -11,7 +13,10 @@ namespace Wtd.Core.ViewModels
     public class EditFrostViewModel : BaseModel
     {
         private readonly Realm _realm;
+
         public Frost Frost { get; }
+
+        public IEnumerable<string> Seasons { get; }
 
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
@@ -27,6 +32,8 @@ namespace Wtd.Core.ViewModels
 
             SaveCommand = new Command(Save);
             DeleteCommand = new Command(Delete);
+
+            Seasons = ListHelper.GetSeasons(_realm);
         }
 
         private void Save()

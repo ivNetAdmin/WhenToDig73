@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using Wtd.Core.Helpers;
 using Wtd.Core.Models;
 using Wtd.Core.Services;
 using Xamarin.Forms;
@@ -41,8 +42,8 @@ namespace Wtd.Core.ViewModels
             Basket = basket;
             Yield = basket.Yield;
 
-            PlantNames = GetPlantNames();
-            Seasons = GetSeasons();
+            PlantNames = ListHelper.GetPlantNames(_realm, true);
+            Seasons = ListHelper.GetSeasons(_realm);
         }
 
         private string _yield;
@@ -81,44 +82,44 @@ namespace Wtd.Core.ViewModels
             Yield = (string)param;
         }
 
-        private IEnumerable<string> GetPlantNames()
-        {
-            var plantNames = new List<string>();
+        //private IEnumerable<string> GetPlantNames()
+        //{
+        //    var plantNames = new List<string>();
 
-            var queryArray = _realm.All<Plant>().AsEnumerable().OrderBy(p => p.Description);
+        //    var queryArray = _realm.All<Plant>().AsEnumerable().OrderBy(p => p.Description);
 
-            foreach (var plant in new List<Plant>(queryArray))
-            {
-                var plantName = string.Format("{0} [{1}]", plant.Description, plant.Variety);
-                if (!plantNames.Contains(plantName))
-                    plantNames.Add(plantName);
-            }
+        //    foreach (var plant in new List<Plant>(queryArray))
+        //    {
+        //        var plantName = string.Format("{0} [{1}]", plant.Description, plant.Variety);
+        //        if (!plantNames.Contains(plantName))
+        //            plantNames.Add(plantName);
+        //    }
 
-            return plantNames;
-        }
+        //    return plantNames;
+        //}
 
-        private IEnumerable<string> GetSeasons()
-        {
-            var seasons = new List<string>();
+        //private IEnumerable<string> GetSeasons()
+        //{
+        //    var seasons = new List<string>();
 
-            var currentSeason = DateTimeOffset.Now.Year;
+        //    var currentSeason = DateTimeOffset.Now.Year;
 
-            // get first season
-            var job = _realm.All<Job>().OrderByDescending(j => j.Date).FirstOrDefault();
-            if (job == null)
-            {
-                seasons.Add(currentSeason.ToString());
-            }
-            else
-            {
-                var firstSeason = job.Date.Year;
+        //    // get first season
+        //    var job = _realm.All<Job>().OrderByDescending(j => j.Date).FirstOrDefault();
+        //    if (job == null)
+        //    {
+        //        seasons.Add(currentSeason.ToString());
+        //    }
+        //    else
+        //    {
+        //        var firstSeason = job.Date.Year;
 
-                for (int season = firstSeason; season <= currentSeason; season++)
-                {
-                    seasons.Add(season.ToString());
-                }
-            }
-            return seasons;
-        }       
+        //        for (int season = firstSeason; season <= currentSeason; season++)
+        //        {
+        //            seasons.Add(season.ToString());
+        //        }
+        //    }
+        //    return seasons;
+        //}       
     }
 }

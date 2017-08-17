@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Wtd.Core.Enums;
+using Wtd.Core.Helpers;
 using Wtd.Core.Models;
 using Wtd.Core.Services;
 using Xamarin.Forms;
@@ -31,43 +32,16 @@ namespace Wtd.Core.ViewModels
             Job = job;
             Job.CalendarDate = DateTime.SpecifyKind(job.Date.DateTime.ToLocalTime(), DateTimeKind.Local);
 
-            JobTypes = GetJobTypes();
+            JobTypes = ListHelper.GetJobTypes();
 
-            PlantNames = GetPlantNames();  
+            PlantNames = ListHelper.GetPlantNames(_realm);  
 
         }       
 
         public IEnumerable<string> JobTypes { get; }
 
-        public IEnumerable<string> PlantNames { get; }
-
-        private IEnumerable<string> GetPlantNames()
-        {
-            var plantNames = new List<string>();
-
-            var queryArray = _realm.All<Plant>().AsEnumerable().OrderBy(p => p.Description);
-
-            foreach (var plant in new List<Plant>(queryArray))
-            {
-                if(!plantNames.Contains(plant.Description))
-                    plantNames.Add(plant.Description);
-            }
-
-            return plantNames;
-        }
-
-        private List<string> GetJobTypes()
-        {
-            var jobTypes = new List<string>();
-
-            for (int i = 0; i < Enum.GetNames(typeof(JobType)).Length; i++)
-            {
-                jobTypes.Add(Enum.GetName(typeof(JobType), i));
-            }
-
-            return jobTypes;
-        }
-
+        public IEnumerable<string> PlantNames { get; }       
+       
         private void Save()
         {
             var jobDate = new DateTimeOffset(Job.CalendarDate, TimeZoneInfo.Local.GetUtcOffset(Job.CalendarDate));

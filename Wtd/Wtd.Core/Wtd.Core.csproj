@@ -37,6 +37,7 @@
   <ItemGroup>
     <Compile Include="Converters\DateTimeToDateTimeOffsetConverter.cs" />
     <Compile Include="Enums\JobType.cs" />
+    <Compile Include="Helpers\ListHelper.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Frost.cs" />
     <Compile Include="Models\Job.cs" />
