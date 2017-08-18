@@ -38,7 +38,7 @@ namespace Wtd.Core.ViewModels
 
             PlantName = "All";
             Season = DateTimeOffset.Now.Year.ToString();
-            JobType = string.Empty;
+            JobType = "All"; // string.Empty;
 
             GetReportItems();
         }
@@ -52,19 +52,21 @@ namespace Wtd.Core.ViewModels
         {
             var reportModel = new ReportModel();
 
-            var queryArray = PlantName == "All"
-                ? _realm.All<Plant>().AsEnumerable().OrderBy(p => p.Description)
-                : _realm.All<Plant>().Where(p => p.Description == PlantName).AsEnumerable().OrderBy(p => p.Description);
+            var tempPlantList = PlantName == "All" ? PlantNames : new List<string> { PlantName };
 
-            foreach (var plant in new List<Plant>(queryArray))
+            foreach (var plant in tempPlantList)
             {
-                var repPlant = new RepPlant
+                if (plant != "All")
                 {
-                    Name = plant.Description,
-                    Varieties = GetVarieties(plant.Description)
-                };
+                    var repPlant = new RepPlant
+                    {
+                        Name = plant,
+                        Varieties = GetVarieties(plant),
+                        Jobs = GetJobs(plant)
+                    };
 
-                reportModel.Plants.Add(repPlant);
+                    reportModel.Plants.Add(repPlant);
+                }
             }
 
             return reportModel;
@@ -74,20 +76,80 @@ namespace Wtd.Core.ViewModels
         {
             var varieties = new List<RepVariety>();
 
-            var queryArray = _realm.All<Basket>().Where(p => p.PlantName.Contains(PlantName)).AsEnumerable().OrderBy(p => p.PlantName);
+            var queryPlantArray = _realm.All<Plant>().Where(p => p.Description == plantName).AsEnumerable().OrderBy(p => p.Variety);
 
-            foreach (var basket in new List<Basket>(queryArray))
+            foreach (var plant in new List<Plant>(queryPlantArray))
             {
-                var repVariety = new RepVariety
+                var fullPlantName = StringHelper.FullPlantName(plantName, plant.Variety);
+                var queryArray = Season == "All"
+                    ? _realm.All<Basket>().Where(p => p.PlantName == fullPlantName).AsEnumerable().OrderBy(p => p.PlantName)
+                    : _realm.All<Basket>().Where(p => p.PlantName == fullPlantName && Season == Season).AsEnumerable().OrderBy(p => p.PlantName);
+
+                var noSeasonYield = true;
+                foreach (var basket in new List<Basket>(queryArray))
                 {
-                    Name = basket.PlantName.Substring(basket.PlantName.IndexOf("["), basket.PlantName.Length - 1),
-                    Yield = basket.Yield
-                };
+                    var repVariety = new RepVariety
+                    {
+                        Name = plant.Variety,
+                        Yield = basket.Yield,
+                        Season = basket.Season
+                    };
+                    noSeasonYield = false;
+                    varieties.Add(repVariety);
+                }
 
-                varieties.Add(repVariety);
-
+                if (noSeasonYield)
+                {
+                    varieties.Add(new RepVariety { Name = plant.Variety });
+                }
             }
+
             return varieties;
+
+        }
+
+        private List<RepJob> GetJobs(string plantName)
+        {
+            var jobs = new List<RepJob>();
+
+            IOrderedEnumerable<Job> queryArray;
+            int year;
+
+            if (JobType == "All")
+            {
+                if (Season == "All")
+                {
+                    queryArray = _realm.All<Job>().Where(j => j.PlantName == plantName).AsEnumerable().OrderBy(j => j.Date).ThenBy(j => j.Type);
+                }
+                else
+                {
+                    queryArray = _realm.All<Job>().Where(j => j.PlantName == plantName && j.Season == Season).AsEnumerable().OrderBy(j => j.Date).ThenBy(j => j.Type);
+                }
+            }
+            else
+            {
+                var jobType = (int)((Enums.JobType)Enum.Parse(typeof(Enums.JobType), JobType));
+                if (Season == "All")
+                {
+                    queryArray = _realm.All<Job>().Where(j => j.PlantName == plantName && j.Type == jobType).AsEnumerable().OrderBy(j => j.Date).ThenBy(j => j.Type);
+                }
+                else
+                {
+                    queryArray = _realm.All<Job>().Where(j => j.PlantName == plantName && j.Type == jobType && j.Season == Season).AsEnumerable().OrderBy(j => j.Date).ThenBy(j => j.Type);
+                }
+            }
+
+            foreach (var job in new List<Job>(queryArray))
+            {
+                jobs.Add(new RepJob
+                {
+                    Description = job.Description,
+                    Date = job.CalendarDate,
+                    Type = (Enum.GetName(typeof(Enums.JobType), job.Type))
+                });
+            }
+
+            return jobs;
         }
     }
 }

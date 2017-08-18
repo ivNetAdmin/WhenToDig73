@@ -46,8 +46,10 @@ namespace Wtd.Core.ViewModels
         {
             var jobDate = new DateTimeOffset(Job.CalendarDate, TimeZoneInfo.Local.GetUtcOffset(Job.CalendarDate));
             var job = _realm.Find<Job>(Job.JodID);
-            _realm.Write(() => {
+            _realm.Write(() =>
+            {
                 job.Date = jobDate.LocalDateTime;
+                job.Season = jobDate.Year.ToString();
                 job.TypeImage = string.Format("t{0}.png", job.Type + 1);
             });
             NavigationService.Navigate(true);          

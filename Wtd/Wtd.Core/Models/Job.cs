@@ -16,9 +16,10 @@ namespace Wtd.Core.Models
         public int Type { get; set; }
         public string TypeImage { get; set; }
         public string Notes { get; set; }
+        public string Season { get; set; }
 
         [Ignored]
-        public  DateTime CalendarDate { get; set; }
+        public DateTime CalendarDate { get; set; }
 
         [Ignored]
         public Color TextColor { get; set; }

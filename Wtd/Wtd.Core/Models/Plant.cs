@@ -1,6 +1,7 @@
 ﻿
 using Realms;
 using System;
+using Wtd.Core.Helpers;
 
 namespace Wtd.Core.Models
 {
@@ -18,7 +19,7 @@ namespace Wtd.Core.Models
         {
             get
             {
-                return string.Format("{0} [{1}]", Description, Variety);
+                return StringHelper.FullPlantName(Description, Variety);
             }
         }
     }
