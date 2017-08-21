@@ -4,6 +4,7 @@ namespace Wtd.Core.Models
     public class RepLine
     {
         public int Row { get; internal set; }
+        public string Font { get; internal set; }
 
         public int Col0 { get; internal set; }
         public int Col1 { get; internal set; }

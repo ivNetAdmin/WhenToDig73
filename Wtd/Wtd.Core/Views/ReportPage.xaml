@@ -39,10 +39,11 @@
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>-->
-                                <Label Text="{Binding Cell0}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col0}" />
-                                <Label Text="{Binding Cell1}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col1}" />
-                                <Label Text="{Binding Cell2}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col2}" />
-                                <Label Text="{Binding Cell3}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col3}" />
+                                <Label Text="{Binding Cell0}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col0}" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="{Binding Font}"/>
+                                <Label Text="{Binding Cell1}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col1}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <Label Text="{Binding Cell2}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col2}" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                <!--<Label Text="{Binding Cell3}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col3}" />-->
+                                <Image HeightRequest="20" Grid.Row="{Binding Row}" Grid.Column="{Binding Col3}" Source="{Binding Path=Cell3}"  VerticalOptions="Center" HorizontalOptions="Start"/>
 
                             </Grid>
                         </ViewCell.View>

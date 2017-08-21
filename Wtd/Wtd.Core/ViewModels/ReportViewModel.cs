@@ -59,25 +59,30 @@ namespace Wtd.Core.ViewModels
         {
             Application.Current.MainPage = new NavigationPage(new MainPage());
         }
-        
+
         private void GetReportItems()
         {
             var reportItems = new List<RepPlant>();
 
             var tempPlantList = PlantName == "All" ? PlantNames : new List<string> { PlantName };
 
+
             foreach (var plant in tempPlantList)
             {
                 if (plant != "All")
                 {
-                    var repPlant = new RepPlant
+                    var notes = new List<string>();
+                    if (!string.IsNullOrEmpty(plant))
                     {
-                        Name = plant,
-                        Varieties = GetVarieties(plant),
-                        Jobs = GetJobs(plant)
-                    };
-
-                    reportItems.Add(repPlant);
+                        var repPlant = new RepPlant
+                        {
+                            Name = plant,
+                            Varieties = GetVarieties(plant, notes),
+                            Jobs = GetJobs(plant, notes),
+                            Notes = notes
+                        };
+                        reportItems.Add(repPlant);
+                    }
                 }
             }
 
@@ -87,40 +92,79 @@ namespace Wtd.Core.ViewModels
         private void GetReportLines(List<RepPlant> reportItems)
         {
             _reportList.Clear();
-            
+
             foreach (var reportItem in reportItems)
             {
                 var row = 0;
-                _reportList.Add(new RepLine { Col0 = 0, Cell0 = reportItem.Name, CellColspan0 = 4, Row = row });
+                _reportList.Add(new RepLine { Col0 = 0, Cell0 = reportItem.Name, CellColspan0 = 4, Font="Bold", Row = row });
                 row++;
-                foreach(var variety in reportItem.Varieties)
+                foreach (var variety in reportItem.Varieties)
                 {
-                    _reportList.Add(new RepLine
+                    if (!string.IsNullOrEmpty(variety.Name))
                     {
-                        Col0 = 1,
-                        Cell0 = string.Empty,
-                        CellColspan0 = 1,
+                        _reportList.Add(new RepLine
+                        {
+                            Col0 = 0,
+                            Cell0 = variety.Name,
+                            CellColspan0 = 2,
+                            Font = "Italic",
 
-                        Col1 = 1,
-                        Cell1 = variety.Name,
-                        CellColspan1 = 1,
+                            Col2 = 2,
+                            Cell2 = variety.Season,
+                            CellColspan2 = 1,
 
-                        Col2 = 2,
-                        Cell2 = variety.Season,
-                        CellColspan2 = 1,
+                            Col3 = 3,
+                            Cell3 = variety.Yield,
+                            CellColspan3 = 1
+                        });
+                        row++;
+                    }
+                }
 
-                        Col3 = 3,
-                        Cell3 = variety.Yield,
-                        CellColspan3 = 1
-                    });
-                    row++;
+                foreach (var note in reportItem.Notes)
+                {
+                    if (!string.IsNullOrEmpty(note))
+                    {
+                        _reportList.Add(new RepLine
+                        {
+                            Col0 = 0,
+                            Cell0 = note,
+                            CellColspan0 = 4,
+                            Font = "None"
+
+                        });
+                        row++;
+                    }
+                }
+
+                foreach (var job in reportItem.Jobs)
+                {
+                    if (!string.IsNullOrEmpty(job.Description))
+                    {
+                        _reportList.Add(new RepLine
+                        {
+                            Col0 = 0,
+                            Cell0 = job.Description,
+                            CellColspan0 = 2,
+                            Font = "Italic",
+
+                            Col2 = 2,
+                            Cell2 = job.Date.ToString("dd/MM/yy"),
+                            CellColspan2 = 1,
+
+                            Col3 = 3,
+                            Cell3 = job.Type,
+                            CellColspan3 = 1
+
+                        });
+                        row++;
+                    }
                 }
             }
-
             ReportList = _reportList;
         }
 
-        private List<RepVariety> GetVarieties(string plantName)
+        private List<RepVariety> GetVarieties(string plantName, List<string> notes)
         {
             var varieties = new List<RepVariety>();
 
@@ -128,6 +172,8 @@ namespace Wtd.Core.ViewModels
 
             foreach (var plant in new List<Plant>(queryPlantArray))
             {
+                notes.Add(plant.Notes);
+
                 var fullPlantName = StringHelper.FullPlantName(plantName, plant.Variety);
                 var queryArray = Season == "All"
                     ? _realm.All<Basket>().Where(p => p.PlantName == fullPlantName).AsEnumerable().OrderBy(p => p.PlantName)
@@ -136,10 +182,12 @@ namespace Wtd.Core.ViewModels
                 var noSeasonYield = true;
                 foreach (var basket in new List<Basket>(queryArray))
                 {
+                    notes.Add(basket.Notes);
+
                     var repVariety = new RepVariety
                     {
                         Name = plant.Variety,
-                        Yield = basket.Yield,
+                        Yield = basket.YieldImage,
                         Season = basket.Season
                     };
                     noSeasonYield = false;
@@ -156,12 +204,11 @@ namespace Wtd.Core.ViewModels
 
         }
 
-        private List<RepJob> GetJobs(string plantName)
+        private List<RepJob> GetJobs(string plantName, List<string> notes)
         {
             var jobs = new List<RepJob>();
 
             IOrderedEnumerable<Job> queryArray;
-            int year;
 
             if (JobType == "All")
             {
@@ -189,11 +236,13 @@ namespace Wtd.Core.ViewModels
 
             foreach (var job in new List<Job>(queryArray))
             {
+                notes.Add(job.Notes);
+
                 jobs.Add(new RepJob
                 {
-                    Description = job.Description,
-                    Date = job.CalendarDate,
-                    Type = (Enum.GetName(typeof(Enums.JobType), job.Type))
+                    Description = string.Format("[{0}] {1}", job.PlantName,job.Description),
+                    Date = job.Date,
+                    Type = job.TypeImage
                 });
             }
 

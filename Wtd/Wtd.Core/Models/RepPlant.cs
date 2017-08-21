@@ -14,5 +14,6 @@ namespace Wtd.Core.Models
         public string Name { get; set; }
         public List<RepVariety> Varieties { get; set; }
         public List<RepJob> Jobs { get; set; }
+        public List<string> Notes { get; internal set; }
     }
 }
