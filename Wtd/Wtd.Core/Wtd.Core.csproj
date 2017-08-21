@@ -43,7 +43,10 @@
     <Compile Include="Models\Frost.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Plant.cs" />
-    <Compile Include="Models\ReportModel.cs" />
+    <Compile Include="Models\RepJob.cs" />
+    <Compile Include="Models\RepLine.cs" />
+    <Compile Include="Models\RepPlant.cs" />
+    <Compile Include="Models\RepVariety.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModels\BaseModel.cs" />

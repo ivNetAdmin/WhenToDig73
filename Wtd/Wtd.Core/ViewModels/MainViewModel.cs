@@ -285,9 +285,7 @@ namespace Wtd.Core.ViewModels
         {
 
             Application.Current.MainPage = new NavigationPage(new PlantPage());
-
-            // var vm = new PlantViewModel();
-            // NavigationService.Navigate(vm);
+        
         }
 
         internal void BasketClicked()

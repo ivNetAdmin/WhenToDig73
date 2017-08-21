@@ -18,7 +18,19 @@ namespace Wtd.Core.ViewModels
 
         public IEnumerable<string> Seasons { get; }
 
-        public string Season { get; set; }
+        private  string _season;
+        public string Season
+        {
+            get { return _season; }
+            set
+            {
+                if (_season != value)
+                {
+                    _season = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         public Command<Basket> AddOrUpdateBasketCommand { get; }
         public Command JobClickedCommand { get; }
@@ -44,14 +56,15 @@ namespace Wtd.Core.ViewModels
             AddOrUpdateBasketCommand = new Command<Basket>(AddOrUpdateBasket);
             JobClickedCommand = new Command(JobClicked);
 
-            Seasons = ListHelper.GetSeasons(_realm);
+            _season = DateTimeOffset.Now.Year.ToString();
+
+            Seasons = ListHelper.GetSeasons(_realm, true);
 
             GetBaskets();
         }
 
         private void GetBaskets()
         {
-
             _basketList.Clear();
             var queryArray = _realm.All<Basket>().AsEnumerable().OrderBy(p => p.PlantName);
 
@@ -84,31 +97,27 @@ namespace Wtd.Core.ViewModels
             Application.Current.MainPage = new NavigationPage(new MainPage());
         }
 
-        //private IEnumerable<string> GetSeasons()
-        //{
-        //    var seasons = new List<string>();
+        private IEnumerable<string> GetSeasons()
+        {
+            var seasons = new List<string>();
 
-        //    var currentSeason = DateTimeOffset.Now.Year;
+            // get first season
+            var job = _realm.All<Job>().OrderByDescending(j => j.Date).FirstOrDefault();
+            if (job == null)
+            {
+                seasons.Add(_season);
+            }
+            else
+            {
+                var firstSeason = job.Date.Year;
 
-        //    Season = currentSeason.ToString();
-
-        //    // get first season
-        //    var job = _realm.All<Job>().OrderByDescending(j => j.Date).FirstOrDefault();
-        //    if (job == null)
-        //    {
-        //        seasons.Add(currentSeason.ToString());
-        //    }
-        //    else
-        //    {
-        //        var firstSeason = job.Date.Year;
-
-        //        for (int season = firstSeason; season <= currentSeason; season++)
-        //        {
-        //            seasons.Add(season.ToString());
-        //        }
-        //    }
-        //    return seasons;
-        //}
+                for (int season = firstSeason; season <= Convert.ToInt32(_season); season++)
+                {
+                    seasons.Add(season.ToString());
+                }
+            }
+            return seasons;
+        }
 
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)
         {

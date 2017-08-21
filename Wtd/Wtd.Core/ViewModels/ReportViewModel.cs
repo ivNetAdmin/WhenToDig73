@@ -2,6 +2,7 @@
 using Realms;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Wtd.Core.Helpers;
 using Wtd.Core.Models;
@@ -26,6 +27,17 @@ namespace Wtd.Core.ViewModels
 
         public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }
 
+        private ObservableCollection<RepLine> _reportList = new ObservableCollection<RepLine>();
+        public ObservableCollection<RepLine> ReportList
+        {
+            get { return _reportList; }
+            set
+            {
+                _reportList = value;
+                OnPropertyChanged();
+            }
+        }
+
         public ReportViewModel()
         {
             _realm = Realm.GetInstance();
@@ -47,10 +59,10 @@ namespace Wtd.Core.ViewModels
         {
             Application.Current.MainPage = new NavigationPage(new MainPage());
         }
-
-        private ReportModel GetReportItems()
+        
+        private void GetReportItems()
         {
-            var reportModel = new ReportModel();
+            var reportItems = new List<RepPlant>();
 
             var tempPlantList = PlantName == "All" ? PlantNames : new List<string> { PlantName };
 
@@ -65,11 +77,47 @@ namespace Wtd.Core.ViewModels
                         Jobs = GetJobs(plant)
                     };
 
-                    reportModel.Plants.Add(repPlant);
+                    reportItems.Add(repPlant);
                 }
             }
 
-            return reportModel;
+            GetReportLines(reportItems);
+        }
+
+        private void GetReportLines(List<RepPlant> reportItems)
+        {
+            _reportList.Clear();
+            
+            foreach (var reportItem in reportItems)
+            {
+                var row = 0;
+                _reportList.Add(new RepLine { Col0 = 0, Cell0 = reportItem.Name, CellColspan0 = 4, Row = row });
+                row++;
+                foreach(var variety in reportItem.Varieties)
+                {
+                    _reportList.Add(new RepLine
+                    {
+                        Col0 = 1,
+                        Cell0 = string.Empty,
+                        CellColspan0 = 1,
+
+                        Col1 = 1,
+                        Cell1 = variety.Name,
+                        CellColspan1 = 1,
+
+                        Col2 = 2,
+                        Cell2 = variety.Season,
+                        CellColspan2 = 1,
+
+                        Col3 = 3,
+                        Cell3 = variety.Yield,
+                        CellColspan3 = 1
+                    });
+                    row++;
+                }
+            }
+
+            ReportList = _reportList;
         }
 
         private List<RepVariety> GetVarieties(string plantName)
@@ -150,6 +198,11 @@ namespace Wtd.Core.ViewModels
             }
 
             return jobs;
+        }
+
+        protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)
+        {
+            GetReportItems();
         }
     }
 }

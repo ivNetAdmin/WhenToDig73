@@ -23,6 +23,36 @@
             <Picker x:Name="Job" ItemsSource="{Binding JobTypes}" SelectedItem="{Binding JobType}" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
         </Grid>
 
+        <ListView 
+                ItemsSource="{Binding ReportList}" 
+
+                VerticalOptions="FillAndExpand" 
+                x:Name="ReportListView">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.View>
+                            <Grid>
+                                <!--<Grid.RowDefinitions>
+                                    <RowDefinition Height="60"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>-->
+                                <Label Text="{Binding Cell0}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col0}" />
+                                <Label Text="{Binding Cell1}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col1}" />
+                                <Label Text="{Binding Cell2}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col2}" />
+                                <Label Text="{Binding Cell3}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col3}" />
+
+                            </Grid>
+                        </ViewCell.View>
+
+                        
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
         <Grid VerticalOptions="End">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
