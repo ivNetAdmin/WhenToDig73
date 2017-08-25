@@ -17,11 +17,13 @@ namespace Wtd.Core.ViewModels
 
         public Basket Basket { get; }       
 
+        public Command HelpClickedCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
         public Command YieldClickedCommand { get; }
         
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
         public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
         public ImageSource PoorBasketIcon { get { return ImageSource.FromFile("poor_basket.png"); } }
@@ -35,6 +37,7 @@ namespace Wtd.Core.ViewModels
         {
             SaveCommand = new Command(Save);
             DeleteCommand = new Command(Delete);
+            HelpClickedCommand = new Command(HelpClicked);
 
             YieldClickedCommand = new Command(YieldClicked);
 
@@ -77,6 +80,12 @@ namespace Wtd.Core.ViewModels
             NavigationService.Navigate(true);
         }
 
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "edit_basket");
+            NavigationService.Navigate(vm);
+        }
+        
         internal void YieldClicked(object param)
         {
             Yield = (string)param;
