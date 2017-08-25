@@ -41,6 +41,8 @@
     <Compile Include="Helpers\StringHelper.cs" />
     <Compile Include="Models\Basket.cs" />
     <Compile Include="Models\Frost.cs" />
+    <Compile Include="Models\HelpSection.cs" />
+    <Compile Include="Models\HelpTitle.cs" />
     <Compile Include="Models\Job.cs" />
     <Compile Include="Models\Plant.cs" />
     <Compile Include="Models\RepJob.cs" />
@@ -56,6 +58,7 @@
     <Compile Include="ViewModels\EditJobViewModel.cs" />
     <Compile Include="ViewModels\EditPlantViewModel.cs" />
     <Compile Include="ViewModels\FrostViewModel.cs" />
+    <Compile Include="ViewModels\HelpViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\PlantViewModel.cs" />
     <Compile Include="ViewModels\ReportViewModel.cs" />
@@ -76,6 +79,9 @@
     </Compile>
     <Compile Include="Views\FrostPage.xaml.cs">
       <DependentUpon>FrostPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HelpPage.xaml.cs">
+      <DependentUpon>HelpPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -163,6 +169,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\EditFrostPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\HelpPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

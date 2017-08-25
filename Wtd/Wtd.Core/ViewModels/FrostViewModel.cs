@@ -15,8 +15,11 @@ namespace Wtd.Core.ViewModels
     {
         private readonly Realm _realm;
 
+        public Command HelpClickedCommand { get; }
         public Command JobClickedCommand { get; }
         public Command AddOrUpdateFrostCommand { get; }
+
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
 
         public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
@@ -36,7 +39,9 @@ namespace Wtd.Core.ViewModels
         {
             _realm = Realm.GetInstance();
 
+            HelpClickedCommand = new Command(HelpClicked);
             JobClickedCommand = new Command(JobClicked);
+
             AddOrUpdateFrostCommand = new Command<Frost>(AddOrUpdateFrost);
 
             GetFrostList();
@@ -54,6 +59,12 @@ namespace Wtd.Core.ViewModels
             }
 
             FrostList = _frostList;
+        }
+
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "frost");
+            NavigationService.Navigate(vm);
         }
 
         internal void JobClicked()

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Wtd.Core.Views.HelpPage"
+             NavigationPage.HasBackButton="False"
+             Title="Help">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding CloseIcon}" Command="{Binding CloseCommand}"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <StackLayout Padding="10" Spacing="5" VerticalOptions="Start">
+            <Label Text="{Binding Title}" FontAttributes="Bold" />
+
+            <ListView 
+                ItemsSource="{Binding Sections}"                
+                VerticalOptions="FillAndExpand" 
+                x:Name="HelpView">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Image Grid.Column="0" Source="{Binding Icon}" VerticalOptions="Center" HeightRequest="20" />
+                                <Label Grid.Column="1" Text="{Binding Text}" VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Wtd.Core.Helpers;
 using Wtd.Core.Models;
+using Wtd.Core.Services;
 using Wtd.Core.Views;
 using Xamarin.Forms;
 
@@ -23,8 +24,10 @@ namespace Wtd.Core.ViewModels
         public IEnumerable<string> PlantNames { get; }
         public IEnumerable<string> Seasons { get; }
 
+        public Command HelpClickedCommand { get; }
         public Command JobClickedCommand { get; }
 
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
         public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }
 
         private ObservableCollection<RepLine> _reportList = new ObservableCollection<RepLine>();
@@ -42,6 +45,7 @@ namespace Wtd.Core.ViewModels
         {
             _realm = Realm.GetInstance();
 
+            HelpClickedCommand = new Command(HelpClicked);
             JobClickedCommand = new Command(JobClicked);
 
             JobTypes = ListHelper.GetJobTypes(true);
@@ -247,6 +251,12 @@ namespace Wtd.Core.ViewModels
             }
 
             return jobs;
+        }
+
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "report");
+            NavigationService.Navigate(vm);
         }
 
         protected override void CurrentPageOnAppearing(object sender, EventArgs eventArgs)

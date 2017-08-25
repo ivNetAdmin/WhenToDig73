@@ -20,11 +20,14 @@ namespace Wtd.Core.ViewModels
         public Command ChangeCalendarCommand { get; }
         public Command CalendarDatePickedCommand{ get; }
 
+        public Command HelpClickedCommand { get; }
         public Command PlantClickedCommand { get; }
         public Command ReportClickedCommand { get; }
         public Command BasketClickedCommand { get; }
         public Command FrostClickedCommand { get; }
-        
+
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
+
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource ReportIcon { get { return ImageSource.FromFile("report.png"); } }
         public ImageSource BasketIcon { get { return ImageSource.FromFile("basket.png"); } }
@@ -47,6 +50,7 @@ namespace Wtd.Core.ViewModels
             ChangeCalendarCommand = new Command(ChangeCalendar);
             CalendarDatePickedCommand = new Command(CalendarDatePicked);
 
+            HelpClickedCommand = new Command(HelpClicked);
             PlantClickedCommand = new Command(PlantClicked);
             BasketClickedCommand = new Command(BasketClicked);
             ReportClickedCommand = new Command(ReportClicked);
@@ -281,11 +285,15 @@ namespace Wtd.Core.ViewModels
             AddOrUpdateJob(job);
         }
 
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "main");
+            NavigationService.Navigate(vm);
+        }
+
         internal void PlantClicked()
         {
-
             Application.Current.MainPage = new NavigationPage(new PlantPage());
-        
         }
 
         internal void BasketClicked()
@@ -295,7 +303,6 @@ namespace Wtd.Core.ViewModels
 
         internal void ReportClicked()
         {
-
             Application.Current.MainPage = new NavigationPage(new ReportPage());
         }
 

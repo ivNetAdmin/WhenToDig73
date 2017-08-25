@@ -10,6 +10,7 @@
     </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding HelpIcon}" Command="{Binding HelpClickedCommand}"/>
         <ToolbarItem Icon="{Binding AddIcon}" Command="{Binding AddOrUpdatePlantCommand}"/>
     </ContentPage.ToolbarItems>
 

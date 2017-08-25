@@ -32,8 +32,11 @@ namespace Wtd.Core.ViewModels
             }
         }
 
+        public Command HelpClickedCommand { get; }
         public Command<Basket> AddOrUpdateBasketCommand { get; }
         public Command JobClickedCommand { get; }
+
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
 
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }
@@ -55,6 +58,7 @@ namespace Wtd.Core.ViewModels
 
             AddOrUpdateBasketCommand = new Command<Basket>(AddOrUpdateBasket);
             JobClickedCommand = new Command(JobClicked);
+            HelpClickedCommand = new Command(HelpClicked);
 
             _season = DateTimeOffset.Now.Year.ToString();
 
@@ -95,6 +99,12 @@ namespace Wtd.Core.ViewModels
         internal void JobClicked()
         {
             Application.Current.MainPage = new NavigationPage(new MainPage());
+        }
+
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "yield");
+            NavigationService.Navigate(vm);
         }
 
         private IEnumerable<string> GetSeasons()

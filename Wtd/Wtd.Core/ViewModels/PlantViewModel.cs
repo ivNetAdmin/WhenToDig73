@@ -15,8 +15,11 @@ namespace Wtd.Core.ViewModels
     {
         private readonly Realm _realm;
 
+        public Command HelpClickedCommand { get; }
         public Command<Plant> AddOrUpdatePlantCommand { get; }
-        public Command JobClickedCommand { get; }       
+        public Command JobClickedCommand { get; }
+
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
 
         public ImageSource AddIcon { get { return ImageSource.FromFile("add.png"); } }
         public ImageSource JobIcon { get { return ImageSource.FromFile("job.png"); } }       
@@ -37,6 +40,8 @@ namespace Wtd.Core.ViewModels
             _realm = Realm.GetInstance();
 
             AddOrUpdatePlantCommand = new Command<Plant>(AddOrUpdatePlant);
+
+            HelpClickedCommand = new Command(HelpClicked);
             JobClickedCommand = new Command(JobClicked);            
 
             GetPlants();
@@ -69,6 +74,12 @@ namespace Wtd.Core.ViewModels
             }
 
             var vm = new EditPlantViewModel(plant);
+            NavigationService.Navigate(vm);
+        }
+
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "plant");
             NavigationService.Navigate(vm);
         }
 

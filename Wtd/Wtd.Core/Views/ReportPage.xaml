@@ -9,6 +9,10 @@
         <models:ReportViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding HelpIcon}" Command="{Binding HelpClickedCommand}"/>
+    </ContentPage.ToolbarItems>
+    
     <StackLayout Padding="10" Spacing="5">
         <Grid VerticalOptions="Start">
             <Grid.RowDefinitions>
