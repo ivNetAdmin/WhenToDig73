@@ -17,9 +17,13 @@ namespace Wtd.Core.ViewModels
         private readonly Realm _realm;
 
         public Job Job { get; }
+        
+        public Command HelpClickedCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
+        
         public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
 
@@ -27,6 +31,7 @@ namespace Wtd.Core.ViewModels
         {
             SaveCommand = new Command(Save);
             DeleteCommand = new Command(Delete);
+            HelpClickedCommand = new Command(HelpClicked);
 
             _realm = realm;
             Job = job;
@@ -55,6 +60,12 @@ namespace Wtd.Core.ViewModels
             NavigationService.Navigate(true);          
         }
 
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "edit_job");
+            NavigationService.Navigate(vm);
+        }
+        
         private void Delete()
         {
             var realm = Realm.GetInstance();
