@@ -61,6 +61,7 @@ namespace Wtd.Core.ViewModels
             SetFrostHelp();
             SetBasketHelp();
             SetReportHelp();
+            SetEditJobHelp();
         }
 
         private void SetJobCalendarHelp()
@@ -154,6 +155,37 @@ namespace Wtd.Core.ViewModels
          
         }
 
+        private void EditJobHelp()
+        {
+            var helpTitle = new HelpTitle { Topic = "edit_job", Text = "Edit Job" };
+            _realm.Write(() => _realm.Add(helpTitle, update: true));
+
+            var helpSection = new HelpSection { Topic = "edit_job", Text = "This view is used to add, delete and edit a job entry", Icon = "job.png", DisplayOrder = 0 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Click this icon to save a new job entry.", Icon = "save.png", DisplayOrder = 1 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Click this icon to delete the selected job entry.", Icon = "delete.png", DisplayOrder = 2 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Briefly describe the job.", DisplayOrder = 3 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Enter a date  for the completion of the job.", DisplayOrder = 4 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Select the job type.", DisplayOrder = 5 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));  
+
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Associate the job with a plant if desired.", DisplayOrder = 6 };
+            _realm.Write(() => _realm.Add(helpSection, update: true)); 
+            
+            helpSection = new HelpSection { Topic = "edit_job", Text = "Add any notes about this job if necessary.", DisplayOrder = 7 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));             
+
+        }
+        
         private void Close()
         {           
             NavigationService.Navigate(true);
