@@ -62,6 +62,8 @@ namespace Wtd.Core.ViewModels
             SetBasketHelp();
             SetReportHelp();
             SetEditJobHelp();
+            SetEditPlantHelp();
+            SetEditFrostHelp();
         }
 
         private void SetJobCalendarHelp()
@@ -107,8 +109,10 @@ namespace Wtd.Core.ViewModels
             helpSection = new HelpSection { Topic = "plant", Text = "Note the default variety is 'Common'", DisplayOrder = 2 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
 
-
             helpSection = new HelpSection { Topic = "plant", Text = "Click on a plant list entry to edit.", DisplayOrder = 3 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            var helpSection = new HelpSection { Topic = "plant", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 4 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
         }
 
@@ -125,6 +129,11 @@ namespace Wtd.Core.ViewModels
 
             helpSection = new HelpSection { Topic = "frost", Text = "Click on a frost list entry to edit.", DisplayOrder = 2 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            var helpSection = new HelpSection { Topic = "frost", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 3 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+
         }
 
         private void SetBasketHelp()
@@ -140,6 +149,9 @@ namespace Wtd.Core.ViewModels
 
             helpSection = new HelpSection { Topic = "yield", Text = "Click on a yield list entry to edit.", DisplayOrder = 2 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            var helpSection = new HelpSection { Topic = "yield", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 3 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));            
         }
 
         private void SetReportHelp()
@@ -152,10 +164,12 @@ namespace Wtd.Core.ViewModels
 
             helpSection = new HelpSection { Topic = "report", Text = "The report can be filtered by plant, season and job type.", DisplayOrder = 1 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
-         
+
+            var helpSection = new HelpSection { Topic = "report", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 2 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
         }
 
-        private void EditJobHelp()
+        private void SetEditJobHelp()
         {
             var helpTitle = new HelpTitle { Topic = "edit_job", Text = "Edit Job" };
             _realm.Write(() => _realm.Add(helpTitle, update: true));
@@ -183,7 +197,48 @@ namespace Wtd.Core.ViewModels
             
             helpSection = new HelpSection { Topic = "edit_job", Text = "Add any notes about this job if necessary.", DisplayOrder = 7 };
             _realm.Write(() => _realm.Add(helpSection, update: true));             
+        }
+        
+        private void SetEditPlantHelp()
+        {
+            var helpTitle = new HelpTitle { Topic = "edit_plant", Text = "Edit Plant" };
+            _realm.Write(() => _realm.Add(helpTitle, update: true));
 
+            var helpSection = new HelpSection { Topic = "edit_plant", Text = "This view is used to add, delete and edit a plant entry", Icon = "plant.png", DisplayOrder = 0 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_plant", Text = "Click this icon to save a new plant entry.", Icon = "save.png", DisplayOrder = 1 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_plant", Text = "Click this icon to delete the selected plant entry.", Icon = "delete.png", DisplayOrder = 2 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            helpSection = new HelpSection { Topic = "edit_plant", Text = "Plant name.", DisplayOrder = 3 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            helpSection = new HelpSection { Topic = "edit_plant", Text = "Plant variety (default is 'Common').", DisplayOrder = 4 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_plant", Text = "Add any notes about this plant/variety if necessary.", DisplayOrder = 5 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));             
+        }
+        
+        private void SetEditFrostHelp()
+        {
+            var helpTitle = new HelpTitle { Topic = "edit_frost", Text = "Edit Frost" };
+            _realm.Write(() => _realm.Add(helpTitle, update: true));
+
+            var helpSection = new HelpSection { Topic = "edit_frost", Text = "This view is used to add, delete and edit a frost entry", Icon = "frost.png", DisplayOrder = 0 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_frost", Text = "Click this icon to save a new frost entry.", Icon = "save.png", DisplayOrder = 1 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+
+            helpSection = new HelpSection { Topic = "edit_frost", Text = "Click this icon to delete the selected frost entry.", Icon = "delete.png", DisplayOrder = 2 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));
+            
+            helpSection = new HelpSection { Topic = "edit_frost", Text = "Date.", DisplayOrder = 3 };
+            _realm.Write(() => _realm.Add(helpSection, update: true));                  
         }
         
         private void Close()
