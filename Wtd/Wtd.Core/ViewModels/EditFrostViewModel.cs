@@ -18,9 +18,11 @@ namespace Wtd.Core.ViewModels
 
         public IEnumerable<string> Seasons { get; }
 
+        public Command HelpClickedCommand { get; }
         public ICommand SaveCommand { get; }
         public ICommand DeleteCommand { get; }
 
+        public ImageSource HelpIcon { get { return ImageSource.FromFile("help.png"); } }
         public ImageSource SaveIcon { get { return ImageSource.FromFile("save.png"); } }
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
 
@@ -32,10 +34,17 @@ namespace Wtd.Core.ViewModels
 
             SaveCommand = new Command(Save);
             DeleteCommand = new Command(Delete);
+            HelpClickedCommand = new Command(HelpClicked);
 
             Seasons = ListHelper.GetSeasons(_realm);
         }
 
+        internal void HelpClicked()
+        {
+            var vm = new HelpViewModel(_realm, "edit_frost");
+            NavigationService.Navigate(vm);
+        }
+        
         private void Save()
         {
             var frostDate = new DateTimeOffset(Frost.CalendarDate, TimeZoneInfo.Local.GetUtcOffset(Frost.CalendarDate));
