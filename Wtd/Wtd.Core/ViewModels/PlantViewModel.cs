@@ -73,7 +73,7 @@ namespace Wtd.Core.ViewModels
                 plant = _realm.All<Plant>().Where(p => p.PlantID == plant.PlantID).FirstOrDefault();
             }
 
-            var vm = new EditPlantViewModel(plant);
+            var vm = new EditPlantViewModel(_realm, plant);
             NavigationService.Navigate(vm);
         }
 

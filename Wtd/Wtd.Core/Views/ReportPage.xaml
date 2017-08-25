@@ -37,12 +37,12 @@
                     <ViewCell>
                         <ViewCell.View>
                             <Grid>
-                                <!--<Grid.RowDefinitions>
-                                    <RowDefinition Height="60"></RowDefinition>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>-->
+                                </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Cell0}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col0}" VerticalOptions="Center" HorizontalOptions="Start" FontAttributes="{Binding Font}"/>
                                 <Label Text="{Binding Cell1}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col1}" VerticalOptions="Center" HorizontalOptions="Start"/>
                                 <Label Text="{Binding Cell2}" Grid.Row="{Binding Row}" Grid.Column="{Binding Col2}" VerticalOptions="Center" HorizontalOptions="Start"/>

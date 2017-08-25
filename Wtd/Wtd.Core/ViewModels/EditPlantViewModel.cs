@@ -9,7 +9,7 @@ namespace Wtd.Core.ViewModels
 {
     public class EditPlantViewModel
     {
-        //private readonly Realm _realm;
+        private readonly Realm _realm;
 
         public Plant Plant { get; }
         
@@ -22,13 +22,13 @@ namespace Wtd.Core.ViewModels
         public ImageSource DeleteIcon { get { return ImageSource.FromFile("delete.png"); } }
 
 
-        public EditPlantViewModel(Plant plant)
+        public EditPlantViewModel(Realm realm, Plant plant)
         {
             SaveCommand = new Command(Save);
             DeleteCommand = new Command(Delete);
             HelpClickedCommand = new Command(HelpClicked);
 
-            //_realm = realm;
+            _realm = realm;
             Plant = plant;
         }
 

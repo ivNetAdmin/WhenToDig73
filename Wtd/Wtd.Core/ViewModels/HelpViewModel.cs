@@ -18,7 +18,7 @@ namespace Wtd.Core.ViewModels
 
         public ICommand CloseCommand { get; }
 
-        public ImageSource CloseIcon { get { return ImageSource.FromFile("delete.png"); } }
+        public ImageSource CloseIcon { get { return ImageSource.FromFile("close.png"); } }
 
         public string Title { get; set; }
 
@@ -112,7 +112,7 @@ namespace Wtd.Core.ViewModels
             helpSection = new HelpSection { Topic = "plant", Text = "Click on a plant list entry to edit.", DisplayOrder = 3 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
             
-            var helpSection = new HelpSection { Topic = "plant", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 4 };
+            helpSection = new HelpSection { Topic = "plant", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 4 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
         }
 
@@ -130,7 +130,7 @@ namespace Wtd.Core.ViewModels
             helpSection = new HelpSection { Topic = "frost", Text = "Click on a frost list entry to edit.", DisplayOrder = 2 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
             
-            var helpSection = new HelpSection { Topic = "frost", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 3 };
+            helpSection = new HelpSection { Topic = "frost", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 3 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
 
 
@@ -150,7 +150,7 @@ namespace Wtd.Core.ViewModels
             helpSection = new HelpSection { Topic = "yield", Text = "Click on a yield list entry to edit.", DisplayOrder = 2 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
             
-            var helpSection = new HelpSection { Topic = "yield", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 3 };
+            helpSection = new HelpSection { Topic = "yield", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 3 };
             _realm.Write(() => _realm.Add(helpSection, update: true));            
         }
 
@@ -165,7 +165,7 @@ namespace Wtd.Core.ViewModels
             helpSection = new HelpSection { Topic = "report", Text = "The report can be filtered by plant, season and job type.", DisplayOrder = 1 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
 
-            var helpSection = new HelpSection { Topic = "report", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 2 };
+             helpSection = new HelpSection { Topic = "report", Text = "Click this icon to return to Job Calendar view.", Icon = "job.png", DisplayOrder = 2 };
             _realm.Write(() => _realm.Add(helpSection, update: true));
         }
 
