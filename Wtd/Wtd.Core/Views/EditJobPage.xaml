@@ -13,6 +13,7 @@
     </ContentPage.Resources>
 
     <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="{Binding HelpIcon}" Command="{Binding HelpClickedCommand}"/>
         <ToolbarItem Icon="{Binding DeleteIcon}" Command="{Binding DeleteCommand}"/>
         <ToolbarItem Icon="{Binding SaveIcon}" Command="{Binding SaveCommand}"/>
     </ContentPage.ToolbarItems>
